@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">fitstagram</string>
+    <string name="description">Description</string>
+    <string name="insert_description_here">insert description here</string>
+    <string name="priority">Priority</string>
+    <string name="insert_minutes_here">insert minutes here</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit_post">Submit Post</string>
+    <string name="post">Post</string>
+    <string name="general_feed">General Feed</string>
+    <string name="time">time</string>
+</resources>
