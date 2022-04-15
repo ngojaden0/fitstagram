@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".MainActivity">
+
+    <!--Used To Hold Posts-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/postHolder"
+        android:layout_width="fill_parent"
+        android:layout_height="566dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="1dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true">
+
+        <!--User Post 1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_1"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginVertical="15dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"/>
+
+        <!--User Post 2-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_2"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginHorizontal="130dp"
+            android:layout_marginVertical="15dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+        <!--User Post 3-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_3"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginHorizontal="260dp"
+            android:layout_marginVertical="15dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+        <!--User Post 4-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_4"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginVertical="250dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+        <!--User Post 5-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_5"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginHorizontal="130dp"
+            android:layout_marginVertical="250dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+        <!--User Post 6-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_6"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginHorizontal="260dp"
+            android:layout_marginVertical="250dp"
+            app:cardBackgroundColor="@color/cream"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!--User Profile Picture-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profilePic"
+        android:layout_width="160dp"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:cardBackgroundColor="@color/cream"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"/>
+
+    <!--Used For UserName-->
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="644dp"
+        android:fontFamily="sans-serif-black"
+        android:text="UserName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#263238" />
+
+    <!--User For About Me-->
+    <TextView
+        android:id="@+id/aboutMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="157dp"
+        android:layout_marginLeft="157dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="585dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Write an About Me Description"
+        android:textColor="#263238" />
+
+</RelativeLayout>
