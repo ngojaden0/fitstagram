@@ -34,6 +34,7 @@ public class PostInformation extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
             }
+            //transfer data between activities
         });
     }
 }
