@@ -35,6 +35,7 @@ public class PostInformation extends AppCompatActivity {
                 finish();
             }
             //transfer data between activities
+            //comment
         });
     }
 }
