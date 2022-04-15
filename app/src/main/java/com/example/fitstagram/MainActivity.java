@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    List<post> GeneralFeed = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         TextView FeedSize = (TextView) findViewById(R.id.feed_size);
 
         post examplePost = new post(123,"hi guys which outfit is best", false, 10);
-        List<post> GeneralFeed = new ArrayList<>();
+
 
         GeneralFeed.add(examplePost);
         ExamplePost.setText(MessageFormat.format("User: {0}\nDescription: {1}\nTime: {2}", examplePost.getUser_id(), examplePost.getDescription(), examplePost.getTime()));
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, PostInformation.class));
+                GeneralFeed.add(new post(123, "hi",false,12));
             }
         });
     }
