@@ -42,10 +42,18 @@ public class PostInformation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // error handle no user input
+                boolean choice = false;
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    choice = extras.getBoolean("key");
+                }
                 Intent intent = new Intent(PostInformation.this,GeneralFeed.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
-                    db.collection("feed").add(new post(123, description.getText().toString(), false, false, Integer.parseInt(time.getText().toString()), null));
+                    if(choice)
+                        db.collection("feed").add(new post(123, description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                    else
+                        db.collection("feed").add(new voting_post(123, description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
                     startActivity(intent);
                 }
                 else {
