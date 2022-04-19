@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "957614278960",
+    "project_id": "fitstagram-fd46b",
+    "storage_bucket": "fitstagram-fd46b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957614278960:android:b273772552ce3cf19f60f5",
+        "android_client_info": {
+          "package_name": "com.example.fitstagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957614278960-f45elkgc2pjti2rovajidutk0a7h7jj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQEDt95RK-24NYeU-1hcu-PmJ0Uxleg6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957614278960-f45elkgc2pjti2rovajidutk0a7h7jj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

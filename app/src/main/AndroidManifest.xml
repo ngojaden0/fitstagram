@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitstagram">
         <activity
-            android:name=".Master"
+            android:name=".userpost_or_voterpost"
             android:exported="false" />
         <activity
             android:name=".PostInformation"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".GeneralFeed"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
