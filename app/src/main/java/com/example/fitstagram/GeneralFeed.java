@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
-
+//this is login
 public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
