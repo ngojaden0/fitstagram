@@ -34,7 +34,10 @@ public class userpost_or_voterpost extends AppCompatActivity {
         user_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(userpost_or_voterpost.this, PostInformation.class));
+                boolean choice = true;
+                Intent i = new Intent(userpost_or_voterpost.this, PostInformation.class);
+                i.putExtra("key",choice);
+                startActivity(i);
             }
         });
     }
@@ -44,7 +47,10 @@ public class userpost_or_voterpost extends AppCompatActivity {
         voter_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(userpost_or_voterpost.this, PostInformation.class));
+                boolean choice = false;
+                Intent i = new Intent(userpost_or_voterpost.this, PostInformation.class);
+                i.putExtra("key",choice);
+                startActivity(i);
             }
         });
     }

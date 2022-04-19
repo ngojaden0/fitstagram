@@ -16,8 +16,8 @@ public class voting_post extends post{
 
     private ArrayList<Integer> total_votes;
 
-    public voting_post(int user_id, String description, boolean featured, boolean voting, int time, ArrayList<Bitmap> pictures, ArrayList<Integer> total_votes) {
-        super(user_id, description, featured, voting, time, pictures);
+    public voting_post(int user_id, String description, boolean featured, int time, ArrayList<Bitmap> pictures) {
+        super(user_id, description, featured, time, pictures);
         this.total_votes = total_votes;
     }
 
