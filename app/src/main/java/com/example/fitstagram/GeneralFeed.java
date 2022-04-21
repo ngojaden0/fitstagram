@@ -28,7 +28,7 @@ public class GeneralFeed extends AppCompatActivity {
         TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
 
         //example post
-        post examplePost = new post(123,"hi guys which outfit is best", false, 10,null);
+        post examplePost = new post(123,456,"hi guys which outfit is best", false, 10,null);
 
         //example - add post object to firestore
         //db.collection("feed").add(examplePost);

@@ -2,19 +2,18 @@ package com.example.fitstagram;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-
-import java.util.ArrayList;
 
 public class post extends BitmapFactory{
     private int user_id;
+    private int post_id;
     private String description;
     private boolean featured;
     private int time;
-    private ArrayList<Bitmap> pictures;
+    private String[] pictures;
 
-    public post(int user_id, String description, boolean featured, int time, ArrayList<Bitmap> pictures){
+    public post(int user_id, int post_id, String description, boolean featured, int time, String[] pictures){
         this.user_id = user_id;
+        this.post_id = post_id;
         this.description = description;
         this.featured = featured;
         this.time = time;
@@ -51,13 +50,5 @@ public class post extends BitmapFactory{
 
     public void setTime(int time) {
         this.time = time;
-    }
-
-    public ArrayList<Bitmap> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(ArrayList<Bitmap> pictures) {
-        this.pictures = pictures;
     }
 }
