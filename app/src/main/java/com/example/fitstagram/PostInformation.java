@@ -133,6 +133,6 @@ public class PostInformation extends AppCompatActivity {
         });
     }
     public int generateRandomId(){
-        return (int) (Math.random()*10000);
+        return (int) (Math.random()*10000); //comment
     }
 }
