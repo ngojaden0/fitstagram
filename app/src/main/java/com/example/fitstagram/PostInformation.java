@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.fitstagram.databinding.ActivityPostInformationBinding;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -43,11 +44,21 @@ public class PostInformation extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     ActivityPostInformationBinding binding;
-    ActivityResultLauncher<String> mTakePhoto;
-    Bitmap photo;
-    Uri file;
+
+    ActivityResultLauncher<String> mTakePhoto1;
+    ActivityResultLauncher<String> mTakePhoto2;
+    ActivityResultLauncher<String> mTakePhoto3;
+
+    Bitmap photo1;
+    Bitmap photo2;
+    Bitmap photo3;
+
+    Uri file1;
+    Uri file2;
+    Uri file3;
+
     StorageReference storageRef = storage.getReference(); //created a reference
-    StorageReference pictures;
+    StorageReference pictures1, pictures2, pictures3;
     UploadTask uploadTask;
     InputStream stream;
     @Override
@@ -57,13 +68,13 @@ public class PostInformation extends AppCompatActivity {
         setContentView(binding.getRoot());
         PostBackButton();
         UploadButton();
-        mTakePhoto = registerForActivityResult(
+        mTakePhoto1 = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
                     public void onActivityResult(Uri result) {
-                        binding.imageView.setImageURI(result);
+                        binding.firstImage.setImageURI(result);
                         Bitmap bitmap = null;
                         ContentResolver contentResolver = getContentResolver();
                         ImageDecoder.Source source = ImageDecoder.createSource(contentResolver, result);
@@ -72,11 +83,49 @@ public class PostInformation extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        photo = bitmap;
-                        file = result;
+                        photo1 = bitmap;
+                        file1 = result;
                     }
                 });
-        PostSubmitButton(photo);
+        mTakePhoto2 = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @RequiresApi(api = Build.VERSION_CODES.P)
+                    @Override
+                    public void onActivityResult(Uri result) {
+                        binding.secondImage.setImageURI(result);
+                        Bitmap bitmap = null;
+                        ContentResolver contentResolver = getContentResolver();
+                        ImageDecoder.Source source = ImageDecoder.createSource(contentResolver, result);
+                        try {
+                            bitmap = ImageDecoder.decodeBitmap(source);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        photo2 = bitmap;
+                        file2 = result;
+                    }
+                });
+        mTakePhoto3 = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @RequiresApi(api = Build.VERSION_CODES.P)
+                    @Override
+                    public void onActivityResult(Uri result) {
+                        binding.thirdImage.setImageURI(result);
+                        Bitmap bitmap = null;
+                        ContentResolver contentResolver = getContentResolver();
+                        ImageDecoder.Source source = ImageDecoder.createSource(contentResolver, result);
+                        try {
+                            bitmap = ImageDecoder.decodeBitmap(source);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        photo3 = bitmap;
+                        file3 = result;
+                    }
+                });
+        PostSubmitButton(photo1, photo2, photo3);
     }
     private void PostBackButton(){
         Button postBackButton = (Button) findViewById(R.id.back_button);
@@ -87,7 +136,7 @@ public class PostInformation extends AppCompatActivity {
             }
         });
     }
-    private void PostSubmitButton(Bitmap picture){
+    private void PostSubmitButton(Bitmap picture1, Bitmap picture2, Bitmap picture3){
         Button postSubmitButton = (Button) findViewById(R.id.submit_post_button);
         EditText description = (EditText) findViewById(R.id.description);
         EditText time = (EditText) findViewById(R.id.time);
@@ -105,13 +154,18 @@ public class PostInformation extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 int random_id = generateRandomId();
                 int user_id = 123; //this is an example, it should be generated from user login
-                pictures = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file.getLastPathSegment());
+                pictures1 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file1.getLastPathSegment());
+                pictures2 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file2.getLastPathSegment());
+                pictures3 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file3.getLastPathSegment());
                 if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
+                    DocumentReference general_feed = db.collection("general feed").document(Integer.toString(random_id));
                     if(choice)
-                        db.collection("feed").add(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
                     else
-                        db.collection("feed").add(new voting_post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
-                    uploadTask = pictures.putFile(file);
+                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                    uploadTask = pictures1.putFile(file1);
+                    uploadTask = pictures2.putFile(file2);
+                    uploadTask = pictures3.putFile(file3);
                     startActivity(intent);
                 }
                 else {
@@ -123,12 +177,28 @@ public class PostInformation extends AppCompatActivity {
         });
     }
     private void UploadButton() {
-        ImageView picture = (ImageView) findViewById(R.id.imageView2);
-        ImageButton upload = (ImageButton) findViewById(R.id.upload_button);
-        upload.setOnClickListener(new View.OnClickListener() {
+        ImageView picture1 = (ImageView) findViewById(R.id.first_image);
+        ImageView picture2 = (ImageView) findViewById(R.id.second_image);
+        ImageView picture3 = (ImageView) findViewById(R.id.third_image);
+        ImageButton upload1 = (ImageButton) findViewById(R.id.upload_button1);
+        ImageButton upload2 = (ImageButton) findViewById(R.id.upload_button2);
+        ImageButton upload3 = (ImageButton) findViewById(R.id.upload_button3);
+        upload1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTakePhoto.launch("image/*");
+                mTakePhoto1.launch("image/*");
+            }
+        });
+        upload2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTakePhoto2.launch("image/*");
+            }
+        });
+        upload3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTakePhoto3.launch("image/*");
             }
         });
     }
