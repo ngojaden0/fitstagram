@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
@@ -16,9 +18,23 @@ public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
 
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
+    String user_id = null;  //prepares user_id
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Authentication
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser == null)
+        {
+            //go to login
+        }
+
         setContentView(R.layout.activity_general_feed);
 
         PostButton(); //post button
@@ -28,7 +44,7 @@ public class GeneralFeed extends AppCompatActivity {
         TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
 
         //example post
-        post examplePost = new post(123,"hi guys which outfit is best", false, false,10,null);
+        post examplePost = new post("123","hi guys which outfit is best", false, false,10,null);
 
         //example - add post object to firestore
         //db.collection("feed").add(examplePost);

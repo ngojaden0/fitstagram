@@ -45,7 +45,7 @@ public class PostInformation extends AppCompatActivity {
                 Intent intent = new Intent(PostInformation.this,GeneralFeed.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
-                    db.collection("feed").add(new post(123, description.getText().toString(), false, false, Integer.parseInt(time.getText().toString()), null));
+                    db.collection("feed").add(new post("123", description.getText().toString(), false, false, Integer.parseInt(time.getText().toString()), null));
                     startActivity(intent);
                 }
                 else {
