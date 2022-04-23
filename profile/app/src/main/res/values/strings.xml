@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">profile</string>
+    <string name="sophia_williams">Sophia Williams</string>
+    <string name="activities">Activities</string>
+    <string name="my">My</string>
+    <string name="profile">Profile</string>
+    <string name="change_username">Change UserName</string>
+    <string name="change_aboutme">Change AboutMe</string>
+    <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="logout">logout</string>
+</resources>
