@@ -27,7 +27,7 @@ import com.example.fitstagram.ui.login.LoginViewModel;
 import com.example.fitstagram.ui.login.LoginViewModelFactory;
 import com.example.fitstagram.databinding.ActivityLoginBinding;
 
-class LoginActivity extends AppCompatActivity {
+public class login extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
