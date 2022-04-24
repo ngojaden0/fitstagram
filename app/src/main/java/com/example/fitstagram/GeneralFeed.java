@@ -20,21 +20,19 @@ public class GeneralFeed extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
 
     FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-
-    String user_id = null;  //prepares user_id
+    FirebaseUser currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Authentication
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        //Authentication
         if(currentUser == null)
         {
             startActivity(new Intent(GeneralFeed.this, login.class));
         }
+        currentUser = mAuth.getCurrentUser();
 
         setContentView(R.layout.activity_general_feed);
 
