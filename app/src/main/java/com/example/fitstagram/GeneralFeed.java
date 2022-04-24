@@ -45,11 +45,14 @@ public class GeneralFeed extends AppCompatActivity {
     }
 
     private void RankingButton() {
-        /*
-              Initialize a button that will take the user to the current ranking
-              Create another activity
-              Use Intent Class
-         */
+        Button rankingButton = (Button) findViewById(R.id.ranking_button);
+        rankingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GeneralFeed.this, ranking.class));
+            }
+        });
+
     }
 
     private void PostButton() {
