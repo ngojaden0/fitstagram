@@ -65,4 +65,14 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
+
+    private void VoteButton() {
+        Button voteButton = (Button) findViewById(R.id.vote_button);
+        voteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GeneralFeed.this, VotePage.class));
+            }
+        });
+    }
 }

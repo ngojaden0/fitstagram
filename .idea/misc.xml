@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_general_feed.xml" value="0.33" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_post_information.xml" value="0.25" />
         <entry key="..\:/Users/Jaden/StudioProjects/fitstagram/app/src/main/res/layout/activity_general_feed.xml" value="0.16032608695652173" />
@@ -10,6 +11,7 @@
         <entry key="..\:/Users/Jaden/StudioProjects/fitstagram/app/src/main/res/layout/activity_master.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Jaden/StudioProjects/fitstagram/app/src/main/res/layout/activity_post_information.xml" value="0.10569105691056911" />
         <entry key="..\:/Users/Jaden/StudioProjects/fitstagram/app/src/main/res/layout/activity_userpost_or_voterpost.xml" value="0.1" />
+        <entry key="..\:/Users/Jaden/StudioProjects/fitstagram/app/src/main/res/layout/activity_vote_page.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
