@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.fitstagram.ui.login.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +29,7 @@ public class GeneralFeed extends AppCompatActivity {
         //Authentication
         if(currentUser == null)
         {
-            startActivity(new Intent(GeneralFeed.this, login.class));
+            //startActivity(new Intent(GeneralFeed.this, login.class));
         }
         currentUser = mAuth.getCurrentUser();
 
