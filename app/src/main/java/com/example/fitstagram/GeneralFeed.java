@@ -17,21 +17,18 @@ import java.text.MessageFormat;
 public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
-
-    FirebaseAuth mAuth;
     FirebaseUser currentUser = null;
-
+    loginMain login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-        //Authentication
-        if(currentUser == null)
+        //Login, Registration, and Authentication
+        while(login.getUser() == null)
         {
-            //startActivity(new Intent(GeneralFeed.this, login.class));
+            startActivity(new Intent(GeneralFeed.this, loginMain.class));
         }
-        currentUser = mAuth.getCurrentUser();
+        currentUser = login.getUser();
 
         setContentView(R.layout.activity_general_feed);
 
