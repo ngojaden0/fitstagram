@@ -35,7 +35,7 @@ public class GeneralFeed extends AppCompatActivity {
 
         setContentView(R.layout.activity_general_feed);
 
-        PostButton(); //post button
+        PostButton(); //post signIn
         UserProfileButton(); // Justine
         RankingButton(); // Christian
 
@@ -52,7 +52,7 @@ public class GeneralFeed extends AppCompatActivity {
 
     private void UserProfileButton() {
         /*
-              Initialize a button that will take the user to their profile
+              Initialize a signIn that will take the user to their profile
               Create another activity
               Use Intent Class
          */
@@ -60,7 +60,7 @@ public class GeneralFeed extends AppCompatActivity {
 
     private void RankingButton() {
         /*
-              Initialize a button that will take the user to the current ranking
+              Initialize a signIn that will take the user to the current ranking
               Create another activity
               Use Intent Class
          */

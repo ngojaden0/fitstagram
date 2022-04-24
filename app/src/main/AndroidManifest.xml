@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitstagram">
         <activity
+            android:name=".loginMain"
+            android:exported="false" />
+        <activity
             android:name=".ui.login.login"
             android:exported="false"
             android:label="@string/title_activity_login" />

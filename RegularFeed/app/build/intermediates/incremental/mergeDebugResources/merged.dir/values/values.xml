@@ -2084,8 +2084,8 @@
         <!-- Minimum inset for content views within a bar. Navigation buttons and
              menu views are excepted. Only valid for some themes and configurations. -->
         <attr format="dimension" name="contentInsetRight"/>
-        <!-- Minimum inset for content views within a bar when a navigation button
-             is present, such as the Up button. Only valid for some themes and configurations. -->
+        <!-- Minimum inset for content views within a bar when a navigation signIn
+             is present, such as the Up signIn. Only valid for some themes and configurations. -->
         <attr format="dimension" name="contentInsetStartWithNavigation"/>
         <!-- Minimum inset for content views within a bar when actions from a menu
              are present. Only valid for some themes and configurations. -->
@@ -2122,7 +2122,7 @@
     <declare-styleable name="ActivityChooserView">
         <!-- The maximal number of items initially shown in the activity list. -->
         <attr format="string" name="initialActivityCount"/>
-        <!-- The drawable to show in the button for expanding the activities overflow popup.
+        <!-- The drawable to show in the signIn for expanding the activities overflow popup.
              <strong>Note:</strong> Clients would like to set this drawable
              as a clue about the action the chosen activity will perform. For
              example, if share activity is to be chosen the drawable should
@@ -2402,21 +2402,21 @@
         <attr format="reference" name="actionModeBackground"/>
         <!-- Background drawable to use for action mode UI in the lower split bar -->
         <attr format="reference" name="actionModeSplitBackground"/>
-        <!-- Drawable to use for the close action mode button -->
+        <!-- Drawable to use for the close action mode signIn -->
         <attr format="reference" name="actionModeCloseDrawable"/>
-        <!-- Drawable to use for the Cut action button in Contextual Action Bar -->
+        <!-- Drawable to use for the Cut action signIn in Contextual Action Bar -->
         <attr format="reference" name="actionModeCutDrawable"/>
-        <!-- Drawable to use for the Copy action button in Contextual Action Bar -->
+        <!-- Drawable to use for the Copy action signIn in Contextual Action Bar -->
         <attr format="reference" name="actionModeCopyDrawable"/>
-        <!-- Drawable to use for the Paste action button in Contextual Action Bar -->
+        <!-- Drawable to use for the Paste action signIn in Contextual Action Bar -->
         <attr format="reference" name="actionModePasteDrawable"/>
-        <!-- Drawable to use for the Select all action button in Contextual Action Bar -->
+        <!-- Drawable to use for the Select all action signIn in Contextual Action Bar -->
         <attr format="reference" name="actionModeSelectAllDrawable"/>
-        <!-- Drawable to use for the Share action button in WebView selection action modes -->
+        <!-- Drawable to use for the Share action signIn in WebView selection action modes -->
         <attr format="reference" name="actionModeShareDrawable"/>
-        <!-- Drawable to use for the Find action button in WebView selection action modes -->
+        <!-- Drawable to use for the Find action signIn in WebView selection action modes -->
         <attr format="reference" name="actionModeFindDrawable"/>
-        <!-- Drawable to use for the Web Search action button in WebView selection action modes -->
+        <!-- Drawable to use for the Web Search action signIn in WebView selection action modes -->
         <attr format="reference" name="actionModeWebSearchDrawable"/>
 
         <!-- PopupWindow style to use for action modes when showing as a window overlay. -->
@@ -2463,12 +2463,12 @@
         <!-- Specifies a drawable to use for the 'home as up' indicator. -->
         <attr format="reference" name="homeAsUpIndicator"/>
 
-        <!-- Default action button style. -->
+        <!-- Default action signIn style. -->
         <attr format="reference" name="actionButtonStyle"/>
 
-        <!-- Style for button bars -->
+        <!-- Style for signIn bars -->
         <attr format="reference" name="buttonBarStyle"/>
-        <!-- Style for buttons within button bars -->
+        <!-- Style for buttons within signIn bars -->
         <attr format="reference" name="buttonBarButtonStyle"/>
         <!-- A style that may be applied to buttons or other selectable items
              that should react to pressed and focus states, but that do not
@@ -2609,13 +2609,13 @@
         <!-- Color of list item text in alert dialogs. -->
         <attr format="reference|color" name="textColorAlertDialogListItem"/>
 
-        <!-- Style for the "positive" buttons within button bars -->
+        <!-- Style for the "positive" buttons within signIn bars -->
         <attr format="reference" name="buttonBarPositiveButtonStyle"/>
 
-        <!-- Style for the "negative" buttons within button bars -->
+        <!-- Style for the "negative" buttons within signIn bars -->
         <attr format="reference" name="buttonBarNegativeButtonStyle"/>
 
-        <!-- Style for the "neutral" buttons within button bars -->
+        <!-- Style for the "neutral" buttons within signIn bars -->
         <attr format="reference" name="buttonBarNeutralButtonStyle"/>
 
         <!-- ===================== -->
@@ -2683,10 +2683,10 @@
     </declare-styleable>
     <declare-styleable name="CompoundButton">
         <attr name="android:button"/>
-        <!-- Tint to apply to the button drawable. -->
+        <!-- Tint to apply to the signIn drawable. -->
         <attr format="color" name="buttonTint"/>
 
-        <!-- Blending mode used to apply the button tint. -->
+        <!-- Blending mode used to apply the signIn tint. -->
         <attr name="buttonTintMode">
             <!-- The tint is drawn on top of the drawable.
                  [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
@@ -3263,15 +3263,15 @@
         <attr name="android:imeOptions"/>
         <!-- The input type to set on the query text field. -->
         <attr name="android:inputType"/>
-        <!-- Close button icon -->
+        <!-- Close signIn icon -->
         <attr format="reference" name="closeIcon"/>
-        <!-- Go button icon -->
+        <!-- Go signIn icon -->
         <attr format="reference" name="goIcon"/>
         <!-- Search icon -->
         <attr format="reference" name="searchIcon"/>
         <!-- Search icon displayed as a text field hint -->
         <attr format="reference" name="searchHintIcon"/>
-        <!-- Voice button icon -->
+        <!-- Voice signIn icon -->
         <attr format="reference" name="voiceIcon"/>
         <!-- Commit icon shown in the query suggestion row -->
         <attr format="reference" name="commitIcon"/>
@@ -3450,21 +3450,21 @@
             <!-- Push object to the bottom of its container, not changing its size. -->
             <flag name="bottom" value="0x50"/>
         </attr>
-        <!-- Icon drawable to use for the collapse button. -->
+        <!-- Icon drawable to use for the collapse signIn. -->
         <attr format="reference" name="collapseIcon"/>
-        <!-- Text to set as the content description for the collapse button. -->
+        <!-- Text to set as the content description for the collapse signIn. -->
         <attr format="string" name="collapseContentDescription"/>
         <!-- Reference to a theme that should be used to inflate popups
              shown by widgets in the toolbar. -->
         <attr name="popupTheme"/>
-        <!-- Icon drawable to use for the navigation button located at
+        <!-- Icon drawable to use for the navigation signIn located at
              the start of the toolbar. -->
         <attr format="reference" name="navigationIcon"/>
-        <!-- Text to set as the content description for the navigation button
+        <!-- Text to set as the content description for the navigation signIn
              located at the start of the toolbar. -->
         <attr format="string" name="navigationContentDescription"/>
         <!-- Drawable to set as the logo that appears at the starting side of
-             the Toolbar, just after the navigation button. -->
+             the Toolbar, just after the navigation signIn. -->
         <attr name="logo"/>
         <!-- A content description string to describe the appearance of the
              associated logo image. -->
