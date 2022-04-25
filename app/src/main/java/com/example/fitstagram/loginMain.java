@@ -67,6 +67,8 @@ public class loginMain extends AppCompatActivity {
             {
                 if(register(email.getText().toString(), password.getText().toString()))
                 {
+                    //Takes you to ProfileCreation
+                    startActivity(new Intent(loginMain.this, ProfileCreation.class));
                     finish();
                 }
             }
@@ -119,9 +121,5 @@ public class loginMain extends AppCompatActivity {
                     }
                 });
         return user != null;
-    }
-    protected FirebaseUser getUser()    //returns FirebaseUser if authorized, null otherwise
-    {
-        return user;
     }
 }

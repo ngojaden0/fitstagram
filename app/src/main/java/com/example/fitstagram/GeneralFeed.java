@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,15 +20,20 @@ public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
     FirebaseUser currentUser = null;
+    FirebaseAuth mAuth;
     loginMain login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_general_feed);
 
-        //startActivity(new Intent(GeneralFeed.this, userpost_or_voterpost.class));
-        //currentUser = login.getUser();
+        mAuth = FirebaseAuth.getInstance();
+
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser != null)
+        {
+            startActivity(new Intent(GeneralFeed.this, loginMain.class));
+        }
 
         PostButton(); //post signIn
         UserProfileButton(); // Justine
@@ -49,7 +56,6 @@ public class GeneralFeed extends AppCompatActivity {
               Create another activity
               Use Intent Class
          */
-        startActivity(new Intent(GeneralFeed.this, loginMain.class));
     }
 
     private void RankingButton() {
@@ -66,6 +72,7 @@ public class GeneralFeed extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // start next activity
+                startActivity(new Intent(GeneralFeed.this, userpost_or_voterpost.class));
             }
         });
     }
