@@ -37,15 +37,14 @@ public class GeneralFeed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_general_feed);
 
         PostButton(); //post button
         UserProfileButton(); // Justine
-        RankingButton(); // Christian
+        //RankingButton(); // Christian
         VoteButton();
         TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
         ImageView ExampleImage = (ImageView) findViewById(R.id.example_image);
-
         db.collection("feed").orderBy("post_id", Query.Direction.DESCENDING)
         .get()
         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -109,7 +108,7 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
-
+/*
     private void RankingButton() {
         Button rankingButton = (Button) findViewById(R.id.ranking_button);
         rankingButton.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +117,10 @@ public class GeneralFeed extends AppCompatActivity {
                 startActivity(new Intent(GeneralFeed.this, ranking.class));
             }
         });
-
     }
 
+
+ */
     private void PostButton() {
         Button postButton = (Button) findViewById(R.id.post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
