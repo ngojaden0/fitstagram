@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/rnkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="FITSTAGRAM RANKING"
+            android:textAllCaps="false"
+            android:textColor="#2196F3"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/returnBtn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:insetLeft="10dp"
+                android:insetRight="50dp"
+                android:onClick="onBtnReturn"
+                android:text="Return"
+                android:textColor="#4A148C"
+                android:textStyle="bold"
+                app:backgroundTint="#F44336"
+                app:icon="@android:drawable/ic_menu_revert"
+                app:iconPadding="4dp" />
+
+            <Button
+                android:id="@+id/infoBtn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:insetLeft="50dp"
+                android:insetRight="10dp"
+                android:onClick="onBtnInfo"
+                android:text="More Info"
+                android:textColor="#6A1B9A"
+                android:textStyle="bold"
+                app:backgroundTint="#2196F3"
+                app:icon="@android:drawable/ic_menu_info_details" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

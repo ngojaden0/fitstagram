@@ -37,7 +37,7 @@ public class GeneralFeed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_feed);
+        setContentView(R.layout.activity_main);
 
         PostButton(); //post button
         UserProfileButton(); // Justine
@@ -111,11 +111,14 @@ public class GeneralFeed extends AppCompatActivity {
     }
 
     private void RankingButton() {
-        /*
-              Initialize a button that will take the user to the current ranking
-              Create another activity
-              Use Intent Class
-         */
+        Button rankingButton = (Button) findViewById(R.id.ranking_button);
+        rankingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GeneralFeed.this, ranking.class));
+            }
+        });
+
     }
 
     private void PostButton() {
