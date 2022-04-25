@@ -59,13 +59,13 @@ public class loginMain extends AppCompatActivity {
                     Toast.makeText(loginMain.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
             }
         });
-
         //Register attempts
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 startActivity(new Intent(loginMain.this, ProfileCreation.class));
+
                 if(user != null)
                     finish();
             }
@@ -89,7 +89,6 @@ public class loginMain extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(loginMain.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            user = null;
                         }
                     }
                 });

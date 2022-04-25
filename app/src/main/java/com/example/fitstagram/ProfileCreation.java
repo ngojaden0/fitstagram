@@ -20,12 +20,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileCreation extends AppCompatActivity {
 
     ActivityProfileCreationBinding binding;
+
     FirebaseAuth mAuth;
-    FirebaseUser user;
+    FirebaseUser currentUser;
+    FirebaseFirestore dBase = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class ProfileCreation extends AppCompatActivity {
         setContentView(R.layout.activity_profile_creation);
 
         mAuth = FirebaseAuth.getInstance();
+
         binding = ActivityProfileCreationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -55,8 +59,11 @@ public class ProfileCreation extends AppCompatActivity {
                     Toast.makeText(ProfileCreation.this, "Email already in use", Toast.LENGTH_SHORT);
                 else
                 {
+                    if(userCreation(password.getText().toString()))
+                        Log.d(TAG, "userCreation:success");
+
                     Toast.makeText(ProfileCreation.this, "Profile Created", Toast.LENGTH_SHORT);
-                    finish();
+                    startActivity(new Intent(ProfileCreation.this, GeneralFeed.class));
                 }
             }
         });
@@ -73,7 +80,7 @@ public class ProfileCreation extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(ProfileCreation.this, "Authentication complete.",
                                     Toast.LENGTH_SHORT).show();
-                            user = mAuth.getCurrentUser();
+                            currentUser = mAuth.getCurrentUser();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -83,6 +90,11 @@ public class ProfileCreation extends AppCompatActivity {
                         }
                     }
                 });
-        return user!= null;
+        return currentUser!= null;
+    }
+    private boolean userCreation(String password)
+    {
+        dBase.collection("users").add(new user(currentUser.getUid().toString(), password, 0, "", 0));
+        return true;
     }
 }

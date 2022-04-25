@@ -19,19 +19,20 @@ import java.text.MessageFormat;
 public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
-    FirebaseUser currentUser = null;
+    FirebaseUser currentUser;
     FirebaseAuth mAuth;
-    loginMain login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_feed);
 
         mAuth = FirebaseAuth.getInstance();
-
         currentUser = mAuth.getCurrentUser();
-        if(currentUser != null)
+
+        if(currentUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
+        else
+            Toast.makeText(GeneralFeed.this, "Logged in as "+currentUser.getEmail(), Toast.LENGTH_SHORT).show();
 
         PostButton(); //post signIn
         UserProfileButton(); // Justine
