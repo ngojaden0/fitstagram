@@ -50,8 +50,8 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
-            votes = itemView.findViewById(R.id.votes);
-            badge = itemView.findViewById(R.id.badge);
+            //votes = itemView.findViewById(R.id.votes);
+            //badge = itemView.findViewById(R.id.badge);
         }
     }
 }
