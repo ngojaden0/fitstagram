@@ -65,12 +65,9 @@ public class loginMain extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(register(email.getText().toString(), password.getText().toString()))
-                {
-                    //Takes you to ProfileCreation
-                    startActivity(new Intent(loginMain.this, ProfileCreation.class));
+                startActivity(new Intent(loginMain.this, ProfileCreation.class));
+                if(user != null)
                     finish();
-                }
             }
         });
     }
@@ -93,30 +90,6 @@ public class loginMain extends AppCompatActivity {
                             Toast.makeText(loginMain.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             user = null;
-                        }
-                    }
-                });
-        return user != null;
-    }
-
-    private boolean register(String email, String password)
-    {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(loginMain.this, "Authentication complete.",
-                                    Toast.LENGTH_SHORT).show();
-                            user = mAuth.getCurrentUser();
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(loginMain.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
