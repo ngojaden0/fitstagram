@@ -31,9 +31,7 @@ public class GeneralFeed extends AppCompatActivity {
 
         currentUser = mAuth.getCurrentUser();
         if(currentUser != null)
-        {
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
-        }
 
         PostButton(); //post signIn
         UserProfileButton(); // Justine
