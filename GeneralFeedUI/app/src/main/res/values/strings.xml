@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">General Feed UI</string>
+    <string name="default_username">Default UserName</string>
+    <string name="like">Like</string>
+    <string name="users_description_goes_here">Users description goes here</string>
+    <string name="ranking">Ranking</string>
+    <string name="post">Post</string>
+    <string name="profile">Profile</string>
+</resources>

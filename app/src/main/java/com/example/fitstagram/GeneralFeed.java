@@ -101,11 +101,13 @@ public class GeneralFeed extends AppCompatActivity {
     }
 
     private void UserProfileButton() {
-        /*
-              Initialize a button that will take the user to their profile
-              Create another activity
-              Use Intent Class
-         */
+        Button profileButton = (Button) findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralFeed.this, profile.class));
+            }
+        });
     }
 
     private void RankingButton() {
