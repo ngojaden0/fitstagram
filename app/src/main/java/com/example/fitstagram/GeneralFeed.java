@@ -23,14 +23,10 @@ public class GeneralFeed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Login, Registration, and Authentication
-        while(login.getUser() == null)
-        {
-            startActivity(new Intent(GeneralFeed.this, loginMain.class));
-        }
-        currentUser = login.getUser();
-
         setContentView(R.layout.activity_general_feed);
+
+        //startActivity(new Intent(GeneralFeed.this, userpost_or_voterpost.class));
+        //currentUser = login.getUser();
 
         PostButton(); //post signIn
         UserProfileButton(); // Justine
@@ -53,6 +49,7 @@ public class GeneralFeed extends AppCompatActivity {
               Create another activity
               Use Intent Class
          */
+        startActivity(new Intent(GeneralFeed.this, loginMain.class));
     }
 
     private void RankingButton() {
@@ -69,7 +66,6 @@ public class GeneralFeed extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // start next activity
-                startActivity(new Intent(GeneralFeed.this, userpost_or_voterpost.class));
             }
         });
     }

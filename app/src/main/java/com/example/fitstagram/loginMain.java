@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +28,7 @@ public class loginMain extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class loginMain extends AppCompatActivity {
                 if(attemptSignIn(email.getText().toString(), password.getText().toString()))
                 {
                     //SIGN IN COMPLETE: user = signedInUser
+                    finish();
                 }
                 else
                     Toast.makeText(loginMain.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
@@ -64,7 +67,7 @@ public class loginMain extends AppCompatActivity {
             {
                 if(register(email.getText().toString(), password.getText().toString()))
                 {
-
+                    finish();
                 }
             }
         });
@@ -79,6 +82,8 @@ public class loginMain extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update user
                             Log.d(TAG, "signInWithEmail:success");
+                            Toast.makeText(loginMain.this, "Authentication complete.",
+                                    Toast.LENGTH_SHORT).show();
                             user = mAuth.getCurrentUser();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -101,6 +106,8 @@ public class loginMain extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            Toast.makeText(loginMain.this, "Authentication complete.",
+                                    Toast.LENGTH_SHORT).show();
                             user = mAuth.getCurrentUser();
 
                         } else {
