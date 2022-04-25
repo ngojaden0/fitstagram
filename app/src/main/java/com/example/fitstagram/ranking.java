@@ -49,7 +49,6 @@ public class ranking extends AppCompatActivity {
                 }
 
                 rAdapter.notifyDataSetChanged();
-
             }
 
             @Override
