@@ -1,15 +1,12 @@
 package com.example.fitstagram;
 
-import com.google.firebase.Timestamp;
-
 public class post {
     private int user_id;
-    private int post_id;
+    private long post_id;
     private String description;
     private boolean featured;
     private int time;
     private String[] pictures;
-    private long current_time;
 
     public post(){
         this.user_id = 0;
@@ -18,16 +15,14 @@ public class post {
         this.featured = false;
         this.time = 0;
         this.pictures = null;
-        this.current_time = 0;
     }
-    public post(int user_id, int post_id, String description, boolean featured, int time, String[] pictures, long current_time){
+    public post(int user_id, long post_id, String description, boolean featured, int time, String[] pictures){
         this.user_id = user_id;
         this.post_id = post_id;
         this.description = description;
         this.featured = featured;
         this.time = time;
         this.pictures = pictures;
-        this.current_time = current_time;
     }
 
     public int getUser_id() {
@@ -38,11 +33,11 @@ public class post {
         this.user_id = user_id;
     }
 
-    public int getPost_id() {
+    public long getPost_id() {
         return post_id;
     }
 
-    public void setPost_id(int post_id) {
+    public void setPost_id(long post_id) {
         this.post_id = post_id;
     }
 
@@ -76,13 +71,5 @@ public class post {
 
     public void setPictures(String[] pictures) {
         this.pictures = pictures;
-    }
-
-    public long getCurrent_time() {
-        return current_time;
-    }
-
-    public void setCurrent_time(long current_time) {
-        this.current_time = current_time;
     }
 }

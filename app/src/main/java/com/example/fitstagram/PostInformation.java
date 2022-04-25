@@ -1,12 +1,5 @@
 package com.example.fitstagram;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.fitstagram.databinding.ActivityPostInformationBinding;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,16 +28,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicMarkableReference;
 
 public class PostInformation extends AppCompatActivity {
     private Object NullPointerException;
@@ -152,17 +144,17 @@ public class PostInformation extends AppCompatActivity {
                 }
                 Intent intent = new Intent(PostInformation.this,GeneralFeed.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                int random_id = generateRandomId();
-                int user_id = 123; //this is an example, it should be generated from user login
-                pictures1 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file1.getLastPathSegment());
-                pictures2 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file2.getLastPathSegment());
-                pictures3 = storageRef.child(Integer.toString(user_id)+"/"+Integer.toString(random_id)+"/"+file3.getLastPathSegment());
+                long post_id = generatePostId();
+                int user_id = 789; //this is an example, it should be generated from user login
+                pictures1 = storageRef.child(Long.toString(post_id)+"/"+file1.getLastPathSegment());
+                pictures2 = storageRef.child(Long.toString(post_id)+"/"+file2.getLastPathSegment());
+                pictures3 = storageRef.child(Long.toString(post_id)+"/"+file3.getLastPathSegment());
                 if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
-                    DocumentReference general_feed = db.collection("general feed").document(Integer.toString(random_id));
+                    DocumentReference general_feed = db.collection("general feed").document(Long.toString(post_id));
                     if(choice)
-                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null, System.currentTimeMillis()));
+                        db.collection("feed").document(Long.toString(post_id)).set(new post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
                     else
-                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null, System.currentTimeMillis()));
+                        db.collection("feed").document(Long.toString(post_id)).set(new voting_post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
                     uploadTask = pictures1.putFile(file1);
                     uploadTask = pictures2.putFile(file2);
                     uploadTask = pictures3.putFile(file3);
@@ -202,7 +194,7 @@ public class PostInformation extends AppCompatActivity {
             }
         });
     }
-    public int generateRandomId(){
-        return (int) (Math.random()*10000);
+    public long generatePostId(){
+        return System.currentTimeMillis();
     }
 }
