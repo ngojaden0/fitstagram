@@ -50,7 +50,7 @@ public class loginMain extends AppCompatActivity {
             {
                 if(attemptSignIn(email.getText().toString(), password.getText().toString()))
                 {
-                    //SIGN IN COMPLETE
+                    //SIGN IN COMPLETE: user = signedInUser
                 }
                 else
                     Toast.makeText(loginMain.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
@@ -62,24 +62,50 @@ public class loginMain extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if(register(email.getText().toString(), password.getText().toString()))
+                {
 
+                }
             }
         });
     }
 
-    private boolean attemptSignIn(String email, String password)
+    private boolean attemptSignIn(String email, String password)    //attempts sign in
     {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, update user
                             Log.d(TAG, "signInWithEmail:success");
                             user = mAuth.getCurrentUser();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(loginMain.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            user = null;
+                        }
+                    }
+                });
+        return user != null;
+    }
+
+    private boolean register(String email, String password)
+    {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            user = mAuth.getCurrentUser();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(loginMain.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -89,6 +115,6 @@ public class loginMain extends AppCompatActivity {
     }
     protected FirebaseUser getUser()    //returns FirebaseUser if authorized, null otherwise
     {
-        return null;
+        return user;
     }
 }
