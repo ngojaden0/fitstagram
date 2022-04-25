@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout-v31/list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_general_feed.xml" value="0.24864130434782608" />
-        <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_main.xml" value="0.24864130434782608" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_main.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_ranking_list.xml" value="0.18888888888888888" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_vote_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/list.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/list_item.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/fitstagram/app/src/main/res/layout/main.xml" value="0.24864130434782608" />

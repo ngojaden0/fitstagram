@@ -19,21 +19,21 @@ public class GeneralFeed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_feed);
+        setContentView(R.layout.activity_main);
 
         PostButton(); //post button
         UserProfileButton(); // Justine
         RankingButton(); // Christian
 
-        TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
+        //TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
 
         //example post
-        post examplePost = new post(123,456,"hi guys which outfit is best", false, 10,null);
+        //post examplePost = new post(123,456,"hi guys which outfit is best", false, 10,null);
 
         //example - add post object to firestore
         //db.collection("feed").add(examplePost);
 
-        ExamplePost.setText(MessageFormat.format("User: {0}\nDescription: {1}\nTime: {2}", examplePost.getUser_id(), examplePost.getDescription(), examplePost.getTime()));
+        //ExamplePost.setText(MessageFormat.format("User: {0}\nDescription: {1}\nTime: {2}", examplePost.getUser_id(), examplePost.getDescription(), examplePost.getTime()));
     }
 
     private void UserProfileButton() {

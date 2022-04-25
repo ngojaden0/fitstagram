@@ -16,6 +16,31 @@
         card_view:cardElevation="10dp">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/vote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/vote_button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="220dp"
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Vote"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    card_view:backgroundTint="#1E88E5" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -47,11 +72,12 @@
                 android:fontFamily="sans-serif-black"
                 android:text="default_username"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/PFPLayout"
-            android:layout_width="match_parent"
+            android:layout_width="111dp"
             android:layout_height="70dp"
             android:orientation="vertical">
 
@@ -59,8 +85,8 @@
                 android:id="@+id/userPFP"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginVertical="15dp"
                 android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="15dp"
                 card_view:cardCornerRadius="50dp">
 
                 <ImageView
@@ -68,10 +94,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:scaleType="fitXY"
                     android:contentDescription="@android:string/untitled"
+                    android:scaleType="fitXY"
                     card_view:srcCompat="@drawable/mfit4" />
+
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -116,6 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+
         />
 
 </LinearLayout>
