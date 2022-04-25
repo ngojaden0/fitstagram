@@ -22,7 +22,7 @@ public class VotePage extends AppCompatActivity {
     StorageReference storageRef = storage.getReference();
 
     int user_id = 123; //hardcoded to test voting
-    int post_id = 2380; // hardcoded to test voting
+    int post_id = 5485; // hardcoded to test voting
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class VotePage extends AppCompatActivity {
     }
     private void VoteButton1() {
         ImageButton voteButton1 = (ImageButton) findViewById(R.id.vote_1);
-        getImage(user_id, post_id, 31, voteButton1);
+        getImage(user_id, post_id, 33, voteButton1);
         voteButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +44,7 @@ public class VotePage extends AppCompatActivity {
     }
     private void VoteButton2() {
         ImageButton voteButton2 = (ImageButton) findViewById(R.id.vote_2);
-        getImage(user_id, post_id, 33, voteButton2);
+        getImage(user_id, post_id, 35, voteButton2);
         voteButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class VotePage extends AppCompatActivity {
     }
     private void VoteButton3() {
         ImageButton voteButton3 = (ImageButton) findViewById(R.id.vote_3);
-        getImage(user_id, post_id, 35, voteButton3);
+        getImage(user_id, post_id, 37, voteButton3);
         voteButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

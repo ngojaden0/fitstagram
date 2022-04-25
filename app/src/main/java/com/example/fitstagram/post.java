@@ -9,7 +9,7 @@ public class post {
     private boolean featured;
     private int time;
     private String[] pictures;
-    private static Timestamp timestamp;
+    private long current_time;
 
     public post(){
         this.user_id = 0;
@@ -18,14 +18,16 @@ public class post {
         this.featured = false;
         this.time = 0;
         this.pictures = null;
+        this.current_time = 0;
     }
-    public post(int user_id, int post_id, String description, boolean featured, int time, String[] pictures){
+    public post(int user_id, int post_id, String description, boolean featured, int time, String[] pictures, long current_time){
         this.user_id = user_id;
         this.post_id = post_id;
         this.description = description;
         this.featured = featured;
         this.time = time;
         this.pictures = pictures;
+        this.current_time = current_time;
     }
 
     public int getUser_id() {
@@ -74,5 +76,13 @@ public class post {
 
     public void setPictures(String[] pictures) {
         this.pictures = pictures;
+    }
+
+    public long getCurrent_time() {
+        return current_time;
+    }
+
+    public void setCurrent_time(long current_time) {
+        this.current_time = current_time;
     }
 }

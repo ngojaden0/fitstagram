@@ -17,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -32,17 +34,15 @@ public class GeneralFeed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_feed);
-        String name;
-        String description;
 
         PostButton(); //post button
         UserProfileButton(); // Justine
         RankingButton(); // Christian
         VoteButton();
         TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
-        TextView ExampleURI = (TextView) findViewById(R.id.uri_string);
-        ImageView ExampleImage = (ImageView) findViewById(R.id.example_image) ;
-        DocumentReference general_feed = db.collection("feed").document("3991");
+        ImageView ExampleImage = (ImageView) findViewById(R.id.example_image);
+        db.collection("feed").orderBy("current_time", Query.Direction.DESCENDING).limit(1);
+        DocumentReference general_feed = db.collection("feed").document();
         general_feed.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -51,8 +51,14 @@ public class GeneralFeed extends AppCompatActivity {
                 assert example != null;
                 ExamplePost.setText(Integer.toString(example.getUser_id())+"\n"+example.getDescription());
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                System.out.println("didn't work");
+            }
         });
-        storageRef.child(Integer.toString(123)+"/"+Integer.toString(3991)+"/"+"image:31").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+        storageRef.child(Integer.toString(123)+"/"+Integer.toString(5485)+"/"+"image:37").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onSuccess(Uri uri) {

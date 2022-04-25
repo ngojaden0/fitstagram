@@ -160,9 +160,9 @@ public class PostInformation extends AppCompatActivity {
                 if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
                     DocumentReference general_feed = db.collection("general feed").document(Integer.toString(random_id));
                     if(choice)
-                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null, System.currentTimeMillis()));
                     else
-                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                        db.collection("feed").document(Integer.toString(random_id)).set(new post(user_id,random_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null, System.currentTimeMillis()));
                     uploadTask = pictures1.putFile(file1);
                     uploadTask = pictures2.putFile(file2);
                     uploadTask = pictures3.putFile(file3);
