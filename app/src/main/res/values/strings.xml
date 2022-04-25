@@ -21,4 +21,9 @@
     <string name="regular_post">Regular Post</string>
     <string name="vote_post">Vote Post</string>
     <string name="go_back">Go Back</string>
+    <string name="profile">Profile</string>
+    <string name="change_username">change_username</string>
+    <string name="change_aboutme">change_aboutme</string>
+    <string name="change_profile_picture">change_profile_picture</string>
+    <string name="logout">logout</string>
 </resources>
