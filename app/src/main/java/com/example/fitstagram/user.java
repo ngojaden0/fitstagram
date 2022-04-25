@@ -5,22 +5,19 @@ public class user {
     private String password;
     private int total_points;
     private String bio;
-    private int badges;
 
     public user() {
         user_id = "";
         password = " ";
         total_points = 0;
         bio = " ";
-        badges = 0;
     }
 
-    public user(String user_id, String password, int total_points, String bio, int badges) {
+    public user(String user_id, String password, int total_points, String bio) {
         this.user_id = user_id;
         this.password = password;
         this.total_points = total_points;
         this.bio = bio;
-        this.badges = badges;
     }
 
     public String getUser_id() {
@@ -53,13 +50,5 @@ public class user {
 
     public void setBio(String bio) {
         this.bio = bio;
-    }
-
-    public int getBadges() {
-        return badges;
-    }
-
-    public void setBadges(int badges) {
-        this.badges = badges;
     }
 }

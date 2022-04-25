@@ -94,7 +94,7 @@ public class ProfileCreation extends AppCompatActivity {
     }
     private boolean userCreation(String password)
     {
-        dBase.collection("users").add(new user(currentUser.getUid().toString(), password, 0, "", 0));
+        dBase.collection("users").add(new user(currentUser.getUid().toString(), password, 0, ""));
         return true;
     }
 }
