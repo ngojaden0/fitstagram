@@ -31,7 +31,7 @@ public class ranking extends AppCompatActivity {
         setContentView(R.layout.activity_ranking_list);
 
         recyclerview = findViewById(R.id.userlist);
-        database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference("users");
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
 

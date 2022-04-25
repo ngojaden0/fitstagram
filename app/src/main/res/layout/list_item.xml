@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/users_description_goes_here" />
+                android:text="users_description_goes_here" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/default_username"
+                android:text="default_username"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
         </LinearLayout>
 
@@ -61,8 +61,7 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="15dp"
                 android:layout_marginHorizontal="30dp"
-                card_view:cardCornerRadius="50dp"
-                card_view:cardBackgroundColor="@color/gray">
+                card_view:cardCornerRadius="50dp">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -87,8 +86,8 @@
                 android:id="@+id/userPost"
                 android:layout_width="280dp"
                 android:layout_height="280dp"
-                card_view:cardCornerRadius="5dp"
-                card_view:cardBackgroundColor="@color/gray_200">
+                card_view:cardBackgroundColor="@color/browser_actions_bg_grey"
+                card_view:cardCornerRadius="5dp">
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -117,6 +116,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        />
 
 </LinearLayout>
