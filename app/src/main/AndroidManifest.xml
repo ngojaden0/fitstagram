@@ -13,6 +13,9 @@
             android:name=".VotePage"
             android:exported="false" />
         <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
             android:name=".userpost_or_voterpost"
             android:exported="false" />
         <activity
