@@ -1,17 +1,22 @@
 package com.example.fitstagram;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-public class post extends BitmapFactory{
+public class post {
     private int user_id;
-    private int post_id;
+    private long post_id;
     private String description;
     private boolean featured;
     private int time;
     private String[] pictures;
 
-    public post(int user_id, int post_id, String description, boolean featured, int time, String[] pictures){
+    public post(){
+        this.user_id = 0;
+        this.post_id = 0;
+        this.description = " ";
+        this.featured = false;
+        this.time = 0;
+        this.pictures = null;
+    }
+    public post(int user_id, long post_id, String description, boolean featured, int time, String[] pictures){
         this.user_id = user_id;
         this.post_id = post_id;
         this.description = description;
@@ -26,6 +31,14 @@ public class post extends BitmapFactory{
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public long getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(long post_id) {
+        this.post_id = post_id;
     }
 
     public String getDescription() {
@@ -50,5 +63,13 @@ public class post extends BitmapFactory{
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public String[] getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(String[] pictures) {
+        this.pictures = pictures;
     }
 }
