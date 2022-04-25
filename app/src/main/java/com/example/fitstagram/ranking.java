@@ -30,32 +30,7 @@ public class ranking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list);
 
-        recyclerview = findViewById(R.id.userlist);
-        database = FirebaseDatabase.getInstance().getReference("users");
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<>();
-        rAdapter = new RankingAdapter(this,list);
-        recyclerview.setAdapter(rAdapter);
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    userrank user = dataSnapshot.getValue(userrank.class);
-                    list.add(user);
-                }
-
-                rAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         returnBtn();
         infoBtn();

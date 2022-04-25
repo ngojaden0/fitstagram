@@ -1,6 +1,7 @@
 package com.example.fitstagram;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,27 +15,39 @@ import java.util.ArrayList;
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<userrank> list;
+    ArrayList<user> list;
 
-    public RankingAdapter(Context context, ArrayList<userrank> list) {
+    public RankingAdapter(Context context, ArrayList<user> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RankingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RankingAdapter.MyViewHolder holder, int position) {
 
-        userrank user = list.get(position);
-        holder.username.setText(user.getUsername());
-        holder.votes.setText(user.getVotes());
+        user user = list.get(position);
+        holder.username.setText(user.getUser_id());
+        holder.votes.setText(user.getTotal_points());
 
+        if (user.getTotal_points() >= 100 && user.getTotal_points() < 500)
+        {
+            holder.badge.setBackground(Drawable.createFromPath("@drawable/bronze_badge.xml"));
+        }
+        else if (user.getTotal_points() >= 500 && user.getTotal_points() < 1000 )
+        {
+            holder.badge.setBackground(Drawable.createFromPath("@drawable/silver_badge.xml"));
+        }
+        else if (user.getTotal_points() >= 1000)
+        {
+            holder.badge.setBackground(Drawable.createFromPath("@drawable/gold_badge.xml"));
+        }
 
     }
 
@@ -45,12 +58,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView position, username, votes, badge;
+        TextView username, votes, badge;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
-            //votes = itemView.findViewById(R.id.votes);
+            votes = itemView.findViewById(R.id.votes);
+            badge = itemView.findViewById(R.id.badge);
 
         }
     }
