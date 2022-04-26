@@ -4,6 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:cardpfp="http://schemas.android.com/apk/res-auto"
     xmlns:viewer="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:visibility="visible"
@@ -15,7 +16,7 @@
         android:layout_height="fill_parent"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitXY"
-        cardpfp:srcCompat="@drawable/gold" />
+        cardpfp:srcCompat="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,10 +105,10 @@
                     android:fontFamily="@font/archivo_black"
                     android:gravity="center"
                     android:text="Edit UserName"
-                    android:visibility="invisible"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck"/>
+                    android:visibility="invisible"
+                    tools:ignore="TextContrastCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,8 +143,8 @@
                     android:text="Write a description about yourself"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
 
@@ -180,6 +181,19 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginVertical="1dp">
+
+        <Button
+            android:id="@+id/returnBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:insetLeft="10dp"
+            android:onClick="onBtnReturn"
+            android:text="Return"
+            android:textColor="#4A148C"
+            android:textStyle="bold"
+            app:backgroundTint="#F44336"
+            app:icon="@android:drawable/ic_menu_revert"/>
 
         <ImageView
             android:id="@+id/Bronze"
