@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,15 +33,16 @@ public class GeneralFeed extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_feed);
+        setContentView(R.layout.activity_main);
 
         PostButton(); //post button
         UserProfileButton(); // Justine
-        //RankingButton(); // Christian
-        VoteButton();
+        RankingButton(); // Christian
+        //VoteButton();
         TextView ExamplePost = (TextView) findViewById(R.id.ExamplePost);
         ImageView ExampleImage = (ImageView) findViewById(R.id.example_image);
         db.collection("feed").orderBy("post_id", Query.Direction.DESCENDING)
@@ -65,7 +65,7 @@ public class GeneralFeed extends AppCompatActivity {
                     String i = user_id.toString();
                     String j = post_id.toString();
                     String k = description.toString();
-                    ExamplePost.setText(i+"\n"+k); //display example post id and description
+                    //ExamplePost.setText(i+"\n"+k); //display example post id and description
                     StorageReference listRef = storage.getReference().child(j);
                     listRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
                         @Override
@@ -78,7 +78,7 @@ public class GeneralFeed extends AppCompatActivity {
                                         @RequiresApi(api = Build.VERSION_CODES.P)
                                         @Override
                                         public void onSuccess(Uri uri) {
-                                            Glide.with(getApplicationContext()).load(uri).override(500,500).into(ExampleImage);
+                                            //Glide.with(getApplicationContext()).load(uri).override(500,500).into(ExampleImage);
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -100,7 +100,7 @@ public class GeneralFeed extends AppCompatActivity {
     }
 
     private void UserProfileButton() {
-        Button profileButton = (Button) findViewById(R.id.profileButton);
+        Button profileButton = (Button) findViewById(R.id.user_button);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
-/*
+
     private void RankingButton() {
         Button rankingButton = (Button) findViewById(R.id.ranking_button);
         rankingButton.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +119,6 @@ public class GeneralFeed extends AppCompatActivity {
         });
     }
 
-
- */
     private void PostButton() {
         Button postButton = (Button) findViewById(R.id.post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +129,7 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
+    /*
     private void VoteButton() {
         Button voteButton = (Button) findViewById(R.id.vote_button);
         voteButton.setOnClickListener(new View.OnClickListener() {
@@ -140,4 +139,5 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
+*/
 }

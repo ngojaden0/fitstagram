@@ -64,7 +64,6 @@
 
             <Button
                 android:id="@+id/user_button"
-                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:insetLeft="20dp"
@@ -73,7 +72,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 card_view:backgroundTint="#1A000000"
-                card_view:cornerRadius="50dp" />
+                card_view:cornerRadius="50dp"  android:layout_width="100dp"/>
         </LinearLayout>
 
         <LinearLayout
