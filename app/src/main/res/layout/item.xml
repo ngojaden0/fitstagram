@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="361dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
@@ -22,7 +22,7 @@
 
             <TextView
 
-                android:layout_width="wrap_content"
+                android:layout_width="51dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="user"
                 android:textSize="20sp"
                 android:textStyle="italic" />
@@ -64,9 +64,9 @@
                 android:id="@+id/votes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:text="Votes"
-                android:layout_marginLeft="8dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -81,7 +81,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/badge"
                 android:layout_width="15dp"
                 android:layout_height="14dp"
