@@ -16,10 +16,13 @@ import android.widget.Toast;
 import com.example.fitstagram.databinding.ActivityLoginMainBinding;
 import com.example.fitstagram.databinding.ActivityProfileCreationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileCreation extends AppCompatActivity {
@@ -58,13 +61,7 @@ public class ProfileCreation extends AppCompatActivity {
                 else if(!signUpAttempt(emailAddress.getText().toString(), password.getText().toString()))
                     Toast.makeText(ProfileCreation.this, "Email already in use", Toast.LENGTH_SHORT);
                 else
-                {
-                    if(userCreation(password.getText().toString()))
-                        Log.d(TAG, "userCreation:success");
-
-                    Toast.makeText(ProfileCreation.this, "Profile Created", Toast.LENGTH_SHORT);
-                    startActivity(new Intent(ProfileCreation.this, GeneralFeed.class));
-                }
+                    userCreation(username.getText().toString(), password.getText().toString());
             }
         });
     }
@@ -78,9 +75,8 @@ public class ProfileCreation extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(ProfileCreation.this, "Authentication complete.",
-                                    Toast.LENGTH_SHORT).show();
                             currentUser = mAuth.getCurrentUser();
+
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -92,9 +88,24 @@ public class ProfileCreation extends AppCompatActivity {
                 });
         return currentUser!= null;
     }
-    private boolean userCreation(String password)
+    private void userCreation(String username, String password)
     {
-        dBase.collection("users").add(new user(currentUser.getUid().toString(), password, 0, ""));
-        return true;
+        dBase.collection("users")
+                .add(new user(username, password, 0, ""))
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+
+                        Toast.makeText(ProfileCreation.this, "Profile Created", Toast.LENGTH_SHORT);
+                        startActivity(new Intent(ProfileCreation.this, GeneralFeed.class));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
     }
 }
