@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +42,9 @@ import com.google.firebase.storage.StorageReference;
 import java.text.MessageFormat;
 //this is login
 public class GeneralFeed extends AppCompatActivity {
+
+    private RecyclerView mFirestoreList;
+    private FirestoreRecyclerAdapter adapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
     FirebaseUser FBUser;
@@ -119,6 +128,51 @@ public class GeneralFeed extends AppCompatActivity {
                     });
                 }
         }});
+
+        mFirestoreList = findViewById(R.id.firestore_list);
+        Query query = FirebaseFirestore.getInstance().collection("feed");
+        FirestoreRecyclerOptions<postModel> option = new FirestoreRecyclerOptions.Builder<postModel>()
+                .setQuery(query,postModel.class).build();
+            adapter = new FirestoreRecyclerAdapter<postModel,postViewHolder>(option) {
+            @NonNull
+            @Override
+            public postViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_single,parent,false);
+                return new postViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull postViewHolder holder, int position, @NonNull postModel model) {
+                holder.descriptionID.setText(model.getDescription());
+                holder.user_id.setText(model.getUser_id() + "");
+                holder.post_id.setText(model.getPost_id() + "");
+
+            }
+        };
+        mFirestoreList.setHasFixedSize(true);
+        mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
+        mFirestoreList.setAdapter(adapter);
+    }
+
+    private class postViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView descriptionID;
+        private TextView user_id;
+        private TextView post_id;
+
+        public postViewHolder(@NonNull View itemView) {
+            super(itemView);
+            descriptionID = itemView.findViewById(R.id.descriptionID);
+            user_id = itemView.findViewById(R.id.user_id);
+            post_id = itemView.findViewById(R.id.post_id);
+
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
     private void UserProfileButton() {
