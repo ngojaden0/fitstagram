@@ -47,7 +47,7 @@ public class ProfileCreation extends AppCompatActivity {
         final EditText username = binding.Username;
         final EditText emailAddress = binding.Email;
         final EditText password = binding.Password;
-        final Button signUp = binding.signUp;
+        final Button signUp = (Button) findViewById(R.id.signUp);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +75,8 @@ public class ProfileCreation extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            Toast.makeText(ProfileCreation.this, "Authentication success.",
+                                    Toast.LENGTH_SHORT).show();
                             currentUser = mAuth.getCurrentUser();
 
 
@@ -90,22 +92,6 @@ public class ProfileCreation extends AppCompatActivity {
     }
     private void userCreation(String username, String password)
     {
-        dBase.collection("users")
-                .add(new user(username, password, 0, ""))
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-
-                        Toast.makeText(ProfileCreation.this, "Profile Created", Toast.LENGTH_SHORT);
-                        startActivity(new Intent(ProfileCreation.this, GeneralFeed.class));
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+        dBase.collection("users").document(currentUser.getUid().toString()).set(new user(username, password, currentUser.getUid().toString(), 0,""));
     }
 }

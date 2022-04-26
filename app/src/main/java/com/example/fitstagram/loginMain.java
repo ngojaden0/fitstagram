@@ -40,8 +40,8 @@ public class loginMain extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //Instantiates I/O machines on screen
-        final Button signIn = binding.signIn;
-        final Button register = binding.register;
+        final Button signIn = (Button) findViewById(R.id.signIn);
+        final Button register = (Button) findViewById(R.id.register);
         final EditText email = binding.emailAddress;
         final EditText password = binding.password;
 
@@ -65,11 +65,11 @@ public class loginMain extends AppCompatActivity {
             public void onClick(View v)
             {
                 startActivity(new Intent(loginMain.this, ProfileCreation.class));
-
-                if(user != null)
-                    finish();
             }
         });
+
+        if(user != null)
+            finish();
     }
 
     private boolean attemptSignIn(String email, String password)    //attempts sign in
