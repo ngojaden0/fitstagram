@@ -16,6 +16,12 @@
             android:name=".profile"
             android:exported="false" />
         <activity
+            android:name=".ranking"
+            android:exported="false" />
+        <activity
+            android:name=".rankingInfo"
+            android:exported="false" />
+        <activity
             android:name=".userpost_or_voterpost"
             android:exported="false" />
         <activity

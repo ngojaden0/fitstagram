@@ -34,7 +34,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
         user user = list.get(position);
         holder.username.setText(user.getUser_id());
-        holder.votes.setText(user.getTotal_points());
+        holder.votes.setText(user.getTotal_points()+"");
 
         if (user.getTotal_points() >= 100 && user.getTotal_points() < 500)
         {
