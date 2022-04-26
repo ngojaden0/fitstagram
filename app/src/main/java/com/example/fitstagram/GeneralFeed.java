@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,6 +21,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -28,18 +32,36 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+
+import java.text.MessageFormat;
+//this is login
 public class GeneralFeed extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
+    FirebaseUser FBUser;
+    FirebaseAuth mAuth;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
+    user currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PostButton(); //post button
+        mAuth = FirebaseAuth.getInstance();
+        FBUser = mAuth.getCurrentUser();
+        currentUser = new user();
+
+        if(FBUser == null)
+            startActivity(new Intent(GeneralFeed.this, loginMain.class));
+        else
+        {
+            currentUser = user.connectToDatabase(FBUser.getUid().toString(), GeneralFeed.this);
+            //String text = currentUser.getUsername();
+            //Toast.makeText(GeneralFeed.this, "Logged in as " + text, Toast.LENGTH_SHORT).show();
+        }
+        PostButton(); //post signIn
         UserProfileButton(); // Justine
         RankingButton(); // Christian
         //VoteButton();
