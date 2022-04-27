@@ -27,7 +27,7 @@ public class loginMain extends AppCompatActivity {
     private ActivityLoginMainBinding binding;
 
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,16 @@ public class loginMain extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         //Instantiates I/O machines on screen
         final Button signIn = (Button) findViewById(R.id.signIn);
         final Button register = (Button) findViewById(R.id.register);
         final EditText email = binding.emailAddress;
         final EditText password = binding.password;
+
+        if(currentUser != null)
+            finish();
 
         //Sign in attempts
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +69,12 @@ public class loginMain extends AppCompatActivity {
             public void onClick(View v)
             {
                 startActivity(new Intent(loginMain.this, ProfileCreation.class));
+                currentUser = mAuth.getCurrentUser();
+                if(currentUser != null)
+                    finish();
             }
         });
-
-        if(user != null)
+        if(currentUser != null)
             finish();
     }
 
@@ -83,7 +89,8 @@ public class loginMain extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             Toast.makeText(loginMain.this, "Authentication complete.",
                                     Toast.LENGTH_SHORT).show();
-                            user = mAuth.getCurrentUser();
+                            currentUser = mAuth.getCurrentUser();
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -92,6 +99,6 @@ public class loginMain extends AppCompatActivity {
                         }
                     }
                 });
-        return user != null;
+        return currentUser != null;
     }
 }
