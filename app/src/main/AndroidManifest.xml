@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitstagram">
         <activity
+            android:name=".ProfileCreation"
+            android:exported="false" />
+        <activity
+            android:name=".loginMain"
+            android:exported="false" />
+
+        <activity
             android:name=".VotePage"
             android:exported="false" />
         <activity
