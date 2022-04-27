@@ -81,6 +81,8 @@ public class GeneralFeed extends AppCompatActivity {
         postToFeed(ExampleImage3,ExampleText3,2);
 
 
+        }});
+
         //mFirestoreList = findViewById(R.id.firestore_list);
         Query query = FirebaseFirestore.getInstance().collection("feed");
         FirestoreRecyclerOptions<postModel> option = new FirestoreRecyclerOptions.Builder<postModel>()
