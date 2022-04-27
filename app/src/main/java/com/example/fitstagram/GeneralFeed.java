@@ -76,12 +76,9 @@ public class GeneralFeed extends AppCompatActivity {
         ImageView ExampleImage1 = (ImageView) findViewById(R.id.post1);
         ImageView ExampleImage2 = (ImageView) findViewById(R.id.post2);
         ImageView ExampleImage3 = (ImageView) findViewById(R.id.post3);
-        postToFeed(ExampleImage1,ExampleText1,0);
-        postToFeed(ExampleImage2,ExampleText2,1);
-        postToFeed(ExampleImage3,ExampleText3,2);
-
-
-        }});
+        postToFeed(ExampleImage1, ExampleText1, 0);
+        postToFeed(ExampleImage2, ExampleText2, 1);
+        postToFeed(ExampleImage3, ExampleText3, 2);
 
         //mFirestoreList = findViewById(R.id.firestore_list);
         Query query = FirebaseFirestore.getInstance().collection("feed");
