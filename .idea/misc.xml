@@ -3,16 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/drawable/radial_background.xml" value="0.3385" />
-        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/drawable/roundcorner.xml" value="0.3385" />
-        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_general_feed.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_login_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_post_information.xml" value="0.5" />
+        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_post_information.xml" value="0.1" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_ranking_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_ranking_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_userpost_or_voterpost.xml" value="0.2821557971014493" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/list_item_single.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jaden/AndroidStudioProjects/fitstagram/app/src/main/res/layout/picture.xml" value="0.36666666666666664" />
@@ -27,7 +23,7 @@
         <entry key="..\:/Users/bbign/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_login_main.xml" value="0.24375" />
         <entry key="..\:/Users/bbign/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_post_information.xml" value="0.24375" />
         <entry key="..\:/Users/bbign/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_profile_creation.xml" value="0.25" />
-        <entry key="..\:/Users/kitty/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_profile.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/kitty/AndroidStudioProjects/fitstagram/app/src/main/res/layout/activity_profile.xml" value="0.264" />
       </map>
     </option>
   </component>

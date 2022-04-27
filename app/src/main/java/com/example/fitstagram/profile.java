@@ -36,7 +36,7 @@ public class profile extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 1 ;
     TextView aboutMe, username;
     ImageView img;
-    String name, email,uid, bio, points;
+    String name, email,uid, bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class profile extends AppCompatActivity {
         else
             username.setText(name);
 
+        //Setting Bio and Rank
         CollectionReference applicationsRef = rootRef.collection("users");
         DocumentReference applicationIdRef = applicationsRef.document(uid);
         applicationIdRef.get().addOnCompleteListener(task -> {
@@ -58,11 +59,10 @@ public class profile extends AppCompatActivity {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     bio = document.getString("bio");
-                    Toast.makeText(this, "Bio: " + bio, Toast.LENGTH_SHORT).show();
+                    aboutMe.setText(document.getString("bio"));
                 }
             }
         });
-        aboutMe.setText("" + bio);
 
         onBtnReturn();
     }
@@ -158,6 +158,17 @@ public class profile extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = editAboutMe.getText().toString();
                         aboutMe.setText(name);
+
+                        CollectionReference applicationsRef = rootRef.collection("users");
+                        DocumentReference applicationIdRef = applicationsRef.document(uid);
+                        applicationIdRef.get().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+
+                                }
+                            }
+                        });
 
                         //Changing Visibility
                         aboutMe.setVisibility(View.VISIBLE);

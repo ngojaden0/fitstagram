@@ -199,23 +199,26 @@
 
         <ImageView
             android:id="@+id/Bronze"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            cardpfp:srcCompat="@drawable/medel_bronze"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            cardpfp:srcCompat="@drawable/bronze_badge"
             tools:ignore="ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/Silver"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            cardpfp:srcCompat="@drawable/medel_bronze"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            cardpfp:srcCompat="@drawable/silver_badge"
             tools:ignore="ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/Gold"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            cardpfp:srcCompat="@drawable/medel_bronze"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            cardpfp:srcCompat="@drawable/gold_badge"
             tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
