@@ -1,3 +1,4 @@
+
 package com.example.fitstagram;
 
 import android.content.Context;
@@ -5,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,15 +40,15 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
         if (user.getTotal_points() >= 100 && user.getTotal_points() < 500)
         {
-            holder.badge.setBackground(Drawable.createFromPath("@drawable/bronze_badge.xml"));
+            holder.badge.setImageResource(R.drawable.bronze_badge);
         }
         else if (user.getTotal_points() >= 500 && user.getTotal_points() < 1000 )
         {
-            holder.badge.setBackground(Drawable.createFromPath("@drawable/silver_badge.xml"));
+            holder.badge.setImageResource(R.drawable.silver_badge);
         }
         else if (user.getTotal_points() >= 1000)
         {
-            holder.badge.setBackground(Drawable.createFromPath("@drawable/gold_badge.xml"));
+            holder.badge.setImageResource(R.drawable.gold_badge);
         }
 
     }
@@ -58,13 +60,14 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, votes, badge;
+        TextView username, votes;
+        ImageView badge;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
             votes = itemView.findViewById(R.id.votes);
-            badge = itemView.findViewById(R.id.badge);
+            badge = (ImageView) itemView.findViewById(R.id.badge);
 
         }
     }
