@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class loginMain extends AppCompatActivity {
 
     private ActivityLoginMainBinding binding;
-
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 

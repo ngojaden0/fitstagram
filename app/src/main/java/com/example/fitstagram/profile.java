@@ -1,6 +1,6 @@
 package com.example.fitstagram;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,18 +16,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.google.firebase.auth.UserProfileChangeRequest;
 import java.io.IOException;
 
+
 public class profile extends AppCompatActivity {
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private static final String TAG = "Profile";
     private static final int GALLERY_REQUEST = 1 ;
+    TextView aboutMe;
     TextView username;
     ImageView img;
     String name, email,uid;
-    Uri photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +39,13 @@ public class profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         getUserProfile();
         username = (TextView) findViewById(R.id.userName);
-        username.setText(email);
+        aboutMe = (TextView) findViewById(R.id.userAboutMe);
         img = findViewById(R.id.pfp);
-        
+        if(name == null)
+            username.setText(email);
+        else
+            username.setText(name);
+
         onBtnReturn();
     }
 
@@ -59,14 +67,12 @@ public class profile extends AppCompatActivity {
 
     public void getUserProfile() {
         // [START get_user_profile]
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Toast.makeText(this, "" + user.getDisplayName(), Toast.LENGTH_SHORT).show();
 
         if (user != null) {
             // Name, email address, and profile photo Url
             name = user.getDisplayName();
             email = user.getEmail();
-            photoUrl = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
@@ -85,7 +91,6 @@ public class profile extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.changeUserName:
                 //Get Value from the EditText to the TextView
-                username = (TextView) findViewById(R.id.userName);
                 EditText editUserName = (EditText) findViewById(R.id.editUserName);
 
                 //Changing Visibility to edit
@@ -99,6 +104,19 @@ public class profile extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = editUserName.getText().toString();
                         username.setText(name);
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(name)
+                                .build();
+
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "User profile updated.");
+                                        }
+                                    }
+                                });
 
                         //Changing Visibility
                         editUserName.setVisibility(View.INVISIBLE);
@@ -109,7 +127,6 @@ public class profile extends AppCompatActivity {
                 return true;
             case R.id.changeAboutMe:
                 //Get Value from the EditText to the TextView
-                TextView aboutMe = (TextView) findViewById(R.id.userAboutMe);
                 EditText editAboutMe = (EditText) findViewById(R.id.editAboutMe);
 
                 //Changing Visibility
@@ -132,13 +149,15 @@ public class profile extends AppCompatActivity {
                 });
                 return true;
             case R.id.changePfp:
-                img = findViewById(R.id.pfp);
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
                 return true;
             case R.id.logout:
-                // do your code
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(profile.this, loginMain.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//makesure user cant go back
+                    startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
