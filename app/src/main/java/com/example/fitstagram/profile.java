@@ -24,20 +24,12 @@ import java.io.IOException;
 
 public class profile extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 1 ;
-    TextView username;
     ImageView img;
-    String name, email,uid;
-    Uri photoUrl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getUserProfile();
-        username = (TextView) findViewById(R.id.userName);
-        username.setText(email);
-        img = findViewById(R.id.pfp);
-        
         onBtnReturn();
     }
 
@@ -60,13 +52,13 @@ public class profile extends AppCompatActivity {
     public void getUserProfile() {
         // [START get_user_profile]
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(this, "" + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + user.getUid(), Toast.LENGTH_SHORT).show();
 
         if (user != null) {
             // Name, email address, and profile photo Url
-            name = user.getDisplayName();
-            email = user.getEmail();
-            photoUrl = user.getPhotoUrl();
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
@@ -74,7 +66,7 @@ public class profile extends AppCompatActivity {
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
-            uid = user.getUid();
+            String uid = user.getUid();
         }
         // [END get_user_profile]
     }
@@ -85,7 +77,7 @@ public class profile extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.changeUserName:
                 //Get Value from the EditText to the TextView
-                username = (TextView) findViewById(R.id.userName);
+                TextView username = (TextView) findViewById(R.id.userName);
                 EditText editUserName = (EditText) findViewById(R.id.editUserName);
 
                 //Changing Visibility to edit
