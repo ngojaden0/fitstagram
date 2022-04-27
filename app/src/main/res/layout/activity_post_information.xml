@@ -4,54 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/radial_background"
     tools:context=".PostInformation">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="384dp"
-        android:text="@string/description"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="408dp"
+        android:text="@string/add_description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_width="108dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="444dp"
         android:ems="10"
-        android:hint="@string/insert_description_here"
+        android:hint="@string/insert_here"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="472dp"
-        android:text="@string/time"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="408dp"
+        android:layout_marginEnd="72dp"
+        android:text="@string/set_time"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="456dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_width="104dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="444dp"
+        android:layout_marginEnd="52dp"
         android:ems="10"
-        android:hint="@string/insert_minutes_here"
+        android:hint="insert here..."
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
@@ -62,49 +64,45 @@
         android:id="@+id/back_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="520dp"
         android:text="@string/cancel"
         app:backgroundTint="#E65151"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/submit_post_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="92dp"
         android:text="@string/submit_post"
         app:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/upload_button1"
         android:layout_width="58dp"
         android:layout_height="63dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginLeft="260dp"
-        android:layout_marginTop="56dp"
-        android:background="#6D4DA6"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_upload"
+        android:background="@drawable/roundcorner"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/upload_button2"
         android:layout_width="58dp"
         android:layout_height="63dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginLeft="260dp"
-        android:layout_marginTop="152dp"
-        android:background="#6D4DA6"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="168dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/roundcorner"
         app:srcCompat="@android:drawable/ic_menu_upload"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -112,12 +110,11 @@
         android:id="@+id/upload_button3"
         android:layout_width="58dp"
         android:layout_height="63dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginLeft="260dp"
-        android:layout_marginTop="248dp"
-        android:background="#6D4DA6"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="272dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/roundcorner"
         app:srcCompat="@android:drawable/ic_menu_upload"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -125,45 +122,47 @@
         android:id="@+id/upload_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="180dp"
-        android:text="Upload Photo"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Upload Photos Here"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/first_image"
-        android:layout_width="48dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@android:drawable/gallery_thumb"
+        tools:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/second_image"
-        android:layout_width="47dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="152dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="150dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@android:drawable/gallery_thumb"
+        tools:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/third_image"
-        android:layout_width="54dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="256dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="250dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@android:drawable/gallery_thumb"
+        tools:srcCompat="@android:drawable/gallery_thumb" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,6 @@ public class GeneralFeed extends AppCompatActivity {
         currentUser = new user();
 
         if(FBUser == null)
-            //Go to login/register screen
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else
         {

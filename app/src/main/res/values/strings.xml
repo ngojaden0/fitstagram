@@ -30,6 +30,9 @@
     <string name="prompt_email" />
     <string name="prompt_password" />
     <string name="action_sign_in_short" />
+    <string name="add_description">Add Description</string>
+    <string name="insert_here">insert here...</string>
+    <string name="set_time">Set Time</string>
 
     <string-array name = "position">
         <item> 1. </item>

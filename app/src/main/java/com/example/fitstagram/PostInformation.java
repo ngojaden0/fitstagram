@@ -161,10 +161,11 @@ public class PostInformation extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 long post_id = generatePostId();
                 int user_id = 789; //this is an example, it should be generated from user login
-                pictures1 = storageRef.child(Long.toString(post_id)+"/"+file1.getLastPathSegment());
-                pictures2 = storageRef.child(Long.toString(post_id)+"/"+file2.getLastPathSegment());
-                pictures3 = storageRef.child(Long.toString(post_id)+"/"+file3.getLastPathSegment());
-                if(!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) {
+
+                if((!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) && (!(file1==null) || !(file2==null) || !(file3==null))) {
+                    pictures1 = storageRef.child(Long.toString(post_id)+"/"+file1.getLastPathSegment());
+                    pictures2 = storageRef.child(Long.toString(post_id)+"/"+file2.getLastPathSegment());
+                    pictures3 = storageRef.child(Long.toString(post_id)+"/"+file3.getLastPathSegment());
                     DocumentReference general_feed = db.collection("general feed").document(Long.toString(post_id));
                     if(choice)
                         db.collection("feed").document(Long.toString(post_id)).set(new post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
@@ -176,7 +177,7 @@ public class PostInformation extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    builder.setMessage("Please fill in information");
+                    builder.setMessage("Please fill in post information");
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }
