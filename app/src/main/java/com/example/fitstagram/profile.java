@@ -170,7 +170,7 @@ public class profile extends AppCompatActivity {
                 });
                 return true;
             case R.id.changeAboutMe:
-                //Get Value from the EditText to the TextView
+                //Get Value from the EditText to the TextViews
                 EditText editAboutMe = (EditText) findViewById(R.id.editAboutMe);
 
                 //Changing Visibility
