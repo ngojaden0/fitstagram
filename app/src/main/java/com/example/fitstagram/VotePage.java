@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -28,12 +29,15 @@ public class VotePage extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String user_id = extras.getString("user");
         String post_id = extras.getString("post");
+        String description = extras.getString("description");
         int image_1 = Integer.parseInt(extras.getString("picture_1"));
         int image_2 = Integer.parseInt(extras.getString("picture_2"));
         int image_3 = Integer.parseInt(extras.getString("picture_3"));
         VoteButton1(user_id, post_id, image_1);
         VoteButton2(user_id, post_id, image_2);
         VoteButton3(user_id, post_id, image_3);
+        TextView text = (TextView) findViewById(R.id.about_post);
+        text.setText("User: "+user_id+"\n"+"Description: "+description);
     }
     private void VoteButton1(String user_id, String post_id, int image_1) {
         ImageButton voteButton1 = (ImageButton) findViewById(R.id.vote_1);
@@ -70,7 +74,7 @@ public class VotePage extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onSuccess(Uri uri) {
-                Glide.with(getApplicationContext()).load(uri).override(250,250).into(image);
+                Glide.with(getApplicationContext()).load(uri).override(500,500).into(image);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
