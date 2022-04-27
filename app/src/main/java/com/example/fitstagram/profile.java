@@ -35,8 +35,9 @@ public class profile extends AppCompatActivity {
     private static final String TAG = "Profile";
     private static final int GALLERY_REQUEST = 1 ;
     TextView aboutMe, username;
-    ImageView img;
+    ImageView img, badges_bronze, badges_silver,badges_gold;
     String name, email,uid, bio;
+    Integer points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,10 @@ public class profile extends AppCompatActivity {
         getUserProfile();
         username = (TextView) findViewById(R.id.userName);
         aboutMe = (TextView) findViewById(R.id.userAboutMe);
+        badges_bronze = (ImageView) findViewById(R.id.Bronze);
+        badges_silver = (ImageView) findViewById(R.id.Silver);
+        badges_gold = (ImageView) findViewById(R.id.Gold);
+
         img = findViewById(R.id.pfp);
         if(name == null)
             username.setText(email);
@@ -63,6 +68,20 @@ public class profile extends AppCompatActivity {
                 }
             }
         });
+
+        points = 10;
+        if(points >= 100 && points < 500){
+            badges_bronze.setVisibility(View.VISIBLE);
+        }
+        else if(points >= 500 && points < 1000){
+            badges_bronze.setVisibility(View.VISIBLE);
+            badges_silver.setVisibility(View.VISIBLE);
+        }
+        else if(points >= 1000){
+            badges_bronze.setVisibility(View.VISIBLE);
+            badges_silver.setVisibility(View.VISIBLE);
+            badges_gold.setVisibility(View.VISIBLE);
+        }
 
         onBtnReturn();
     }

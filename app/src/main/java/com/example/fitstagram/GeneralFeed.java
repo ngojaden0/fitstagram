@@ -146,7 +146,6 @@ public class GeneralFeed extends AppCompatActivity {
                 holder.descriptionID.setText(model.getDescription());
                 holder.user_id.setText(model.getUser_id() + "");
                 holder.post_id.setText(model.getPost_id() + "");
-
             }
         };
         mFirestoreList.setHasFixedSize(true);

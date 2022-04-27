@@ -203,6 +203,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             cardpfp:srcCompat="@drawable/bronze_badge"
+            android:visibility="invisible"
             tools:ignore="ImageContrastCheck" />
 
         <ImageView
@@ -211,6 +212,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             cardpfp:srcCompat="@drawable/silver_badge"
+            android:visibility="invisible"
             tools:ignore="ImageContrastCheck" />
 
         <ImageView
@@ -219,6 +221,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             cardpfp:srcCompat="@drawable/gold_badge"
+            android:visibility="invisible"
             tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
