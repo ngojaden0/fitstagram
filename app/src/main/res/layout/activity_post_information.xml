@@ -88,10 +88,10 @@
         android:layout_height="63dp"
         android:layout_marginStart="252dp"
         android:layout_marginTop="60dp"
-        android:background="#6D4DA6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_upload"
+        android:background="@drawable/roundcorner"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -100,9 +100,9 @@
         android:layout_height="63dp"
         android:layout_marginStart="252dp"
         android:layout_marginTop="168dp"
-        android:background="#6D4DA6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/roundcorner"
         app:srcCompat="@android:drawable/ic_menu_upload"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -112,9 +112,9 @@
         android:layout_height="63dp"
         android:layout_marginStart="252dp"
         android:layout_marginTop="272dp"
-        android:background="#6D4DA6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/roundcorner"
         app:srcCompat="@android:drawable/ic_menu_upload"
         tools:ignore="SpeakableTextPresentCheck" />
 
