@@ -16,6 +16,7 @@
         android:text="@string/regular_post"
         android:textSize="18sp"
         app:backgroundTint="#4D599E"
+        android:background="@drawable/roundcorner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,7 @@
         android:text="@string/vote_post"
         android:textSize="18sp"
         app:backgroundTint="#4D599E"
+        android:background="@drawable/roundcorner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
