@@ -43,6 +43,9 @@ public class ProfileCreation extends AppCompatActivity {
         binding = ActivityProfileCreationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if(currentUser != null)
+            finish();
+
         //creates I/O machines
         final EditText username = binding.Username;
         final EditText emailAddress = binding.Email;
@@ -53,15 +56,18 @@ public class ProfileCreation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(username.getText().toString().length()<1)
-                    Toast.makeText(ProfileCreation.this, "Please input Username", Toast.LENGTH_SHORT);
+                    Toast.makeText(ProfileCreation.this, "Please input Username", Toast.LENGTH_SHORT).show();
                 else if(!emailAddress.getText().toString().contains("@"))
-                    Toast.makeText(ProfileCreation.this, "Email must contain @", Toast.LENGTH_SHORT);
+                    Toast.makeText(ProfileCreation.this, "Email must contain @", Toast.LENGTH_SHORT).show();
                 else if(password.getText().toString().length()<5)
-                    Toast.makeText(ProfileCreation.this, "Password must be 5 characters or longer", Toast.LENGTH_SHORT);
+                    Toast.makeText(ProfileCreation.this, "Password must be 5 characters or longer", Toast.LENGTH_SHORT).show();
                 else if(!signUpAttempt(emailAddress.getText().toString(), password.getText().toString()))
-                    Toast.makeText(ProfileCreation.this, "Email already in use", Toast.LENGTH_SHORT);
+                    Toast.makeText(ProfileCreation.this, "Email already in use", Toast.LENGTH_SHORT).show();
                 else
+                {
                     userCreation(username.getText().toString(), password.getText().toString());
+                    finish();
+                }
             }
         });
     }
@@ -78,7 +84,6 @@ public class ProfileCreation extends AppCompatActivity {
                             Toast.makeText(ProfileCreation.this, "Authentication success.",
                                     Toast.LENGTH_SHORT).show();
                             currentUser = mAuth.getCurrentUser();
-
 
                         } else {
                             // If sign in fails, display a message to the user.
