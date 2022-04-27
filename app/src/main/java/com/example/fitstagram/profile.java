@@ -152,6 +152,16 @@ public class profile extends AppCompatActivity {
                                     }
                                 });
 
+                        CollectionReference applicationsRef = rootRef.collection("users");
+                        DocumentReference applicationIdRef = applicationsRef.document(uid);
+                        applicationIdRef.get().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    applicationIdRef.update("username",name);}
+                            }
+                        });
+
                         //Changing Visibility
                         editUserName.setVisibility(View.INVISIBLE);
                         username.setVisibility(View.VISIBLE);
@@ -181,8 +191,7 @@ public class profile extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
-
-                                }
+                                    applicationIdRef.update("bio",name);}
                             }
                         });
 
