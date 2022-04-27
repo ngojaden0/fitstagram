@@ -62,7 +62,7 @@ public class GeneralFeed extends AppCompatActivity {
         FBUser = mAuth.getCurrentUser();
         currentUser = new user();
 
-        if(FBUser != null)
+        if(FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else
         {
