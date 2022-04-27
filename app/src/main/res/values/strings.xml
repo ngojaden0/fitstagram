@@ -27,6 +27,9 @@
     <string name="change_profile_picture">change_profile_picture</string>
     <string name="logout">logout</string>
     <string name="fitstagram_ranking">FITSTAGRAM RANKING</string>
+    <string name="prompt_email" />
+    <string name="prompt_password" />
+    <string name="action_sign_in_short" />
 
     <string-array name = "position">
         <item> 1. </item>
