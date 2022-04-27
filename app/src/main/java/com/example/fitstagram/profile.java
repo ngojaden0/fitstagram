@@ -21,17 +21,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.IOException;
 
 
 public class profile extends AppCompatActivity {
+    FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private static final String TAG = "Profile";
     private static final int GALLERY_REQUEST = 1 ;
-    TextView aboutMe;
-    TextView username;
+    TextView aboutMe, username;
     ImageView img;
-    String name, email,uid;
+    String name, email,uid, bio, points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,19 @@ public class profile extends AppCompatActivity {
             username.setText(email);
         else
             username.setText(name);
+
+        CollectionReference applicationsRef = rootRef.collection("users");
+        DocumentReference applicationIdRef = applicationsRef.document(uid);
+        applicationIdRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    bio = document.getString("bio");
+                    Toast.makeText(this, "Bio: " + bio, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        aboutMe.setText("" + bio);
 
         onBtnReturn();
     }
