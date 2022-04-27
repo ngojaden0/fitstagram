@@ -69,7 +69,7 @@ public class profile extends AppCompatActivity {
             }
         });
 
-        points = 10;
+        points = 1000;
         if(points >= 100 && points < 500){
             badges_bronze.setVisibility(View.VISIBLE);
         }
