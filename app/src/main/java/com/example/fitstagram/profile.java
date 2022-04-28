@@ -1,6 +1,9 @@
 package com.example.fitstagram;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,9 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,8 +30,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class profile extends AppCompatActivity {
@@ -76,6 +85,35 @@ public class profile extends AppCompatActivity {
                         badges_silver.setVisibility(View.VISIBLE);
                         badges_gold.setVisibility(View.VISIBLE);
                     }
+                }
+            }
+        });
+
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        final ArrayList<String> imageList = new ArrayList<>();
+        final RecyclerView recyclerView = findViewById(R.id.recyclerViewProfile);
+        final ImageAdapter adapter = new ImageAdapter(imageList,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("1650916494032");
+        progressBar.setVisibility(View.VISIBLE);
+        storageReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                for (StorageReference fileRef : listResult.getItems()) {
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageList.add(uri.toString());
+                            Log.d("item", uri.toString());
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            recyclerView.setAdapter(adapter);
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    });
                 }
             }
         });
