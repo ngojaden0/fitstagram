@@ -63,7 +63,7 @@ public class GeneralFeed extends AppCompatActivity {
         if (FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else {
-            currentUser = user.connectToDatabase(FBUser.getUid().toString(), GeneralFeed.this);
+            //currentUser = user.connectToDatabase(FBUser.getUid().toString(), GeneralFeed.this);
             //String text = currentUser.getUsername();
             //Toast.makeText(GeneralFeed.this, "Logged in as " + text, Toast.LENGTH_SHORT).show();
         }

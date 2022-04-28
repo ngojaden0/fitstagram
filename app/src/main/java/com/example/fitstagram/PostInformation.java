@@ -1,12 +1,5 @@
 package com.example.fitstagram;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,16 +28,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicMarkableReference;
 
 public class PostInformation extends AppCompatActivity {
     private Object NullPointerException;
@@ -160,7 +145,7 @@ public class PostInformation extends AppCompatActivity {
                 Intent intent = new Intent(PostInformation.this,GeneralFeed.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 long post_id = generatePostId();
-                int user_id = 789; //this is an example, it should be generated from user login
+                int user_id = 12345; //this is an example, it should be generated from user login
 
                 if((!TextUtils.isEmpty(description.getText().toString()) || !TextUtils.isEmpty(time.getText().toString())) && (!(file1==null) || !(file2==null) || !(file3==null))) {
                     pictures1 = storageRef.child(Long.toString(post_id)+"/"+file1.getLastPathSegment());
