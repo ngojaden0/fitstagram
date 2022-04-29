@@ -63,9 +63,13 @@ public class GeneralFeed extends AppCompatActivity {
 
         if (FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
-        else {
+        else if(!user.isDatabaseConnected())
             currentUser = user.connectToDatabase(FBUser.getUid(), GeneralFeed.this);
+        else{
+            currentUser = user.databaseGetUser();
+            Toast.makeText(GeneralFeed.this, "Logged in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
         }
+
         PostButton(); //post signIn
         UserProfileButton(); // Justine
         RankingButton(); // Christian

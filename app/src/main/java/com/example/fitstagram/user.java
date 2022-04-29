@@ -3,10 +3,13 @@ package com.example.fitstagram;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -75,6 +78,7 @@ public class user {
     public void setBio(String bio) { this.bio = bio; }
 
     private static ArrayList<user> output = new ArrayList<>();
+    private static boolean databaseConnected = false;
     public static user connectToDatabase(String UID, Context context)
     {
         output.add(0, new user());
@@ -82,8 +86,10 @@ public class user {
             @Override
             public void onCallback(user u) {
                 output.set(0, u);
-                String text = u.getUsername();
-                Toast.makeText(context, "Logged in as " + text, Toast.LENGTH_SHORT).show();
+                databaseConnected = true;
+                Intent i = new Intent(context, GeneralFeed.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
             }
         });
         return output.get(0);
@@ -102,6 +108,16 @@ public class user {
 
     private interface MyCallback {
         void onCallback(user u);
+    }
+
+    public static boolean isDatabaseConnected()
+    {
+        return databaseConnected;
+    }
+
+    public static user databaseGetUser()
+    {
+        return output.get(0);
     }
 
     public void setUsername(String username) {
