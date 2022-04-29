@@ -8,13 +8,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.common.internal.AccountAccessor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class user {
     private String username;
@@ -71,28 +74,42 @@ public class user {
 
     public void setBio(String bio) { this.bio = bio; }
 
+    private static ArrayList<user> output = new ArrayList<>();
     public static user connectToDatabase(String UID, Context context)
     {
-        final user[] output = {null};
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(UID);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        output.add(0, new user());
+        readData(UID, new MyCallback() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                output[0] = documentSnapshot.toObject(user.class);
-                Toast.makeText(context, "user is set to FirebaseUser", Toast.LENGTH_SHORT).show();
+            public void onCallback(user u) {
+                output.set(0, u);
+                String text = u.getUsername();
+                Toast.makeText(context, "Logged in as " + text, Toast.LENGTH_SHORT).show();
             }
         });
+        return output.get(0);
+    }
 
-        return output[0];
+    private static void readData(String UID, MyCallback myCallback) {
+        DocumentReference mSettings = FirebaseFirestore.getInstance().collection("users").document(UID);
+        mSettings.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                user u = documentSnapshot.toObject(user.class);
+                myCallback.onCallback(u);
+            }
+        });
+    }
+
+    private interface MyCallback {
+        void onCallback(user u);
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setUID(String UID) {
+    private void setUID(String UID) {
         this.UID = UID;
-    }
+    }   //User ID's can't change. Only update if UID is incorrect
 
 }

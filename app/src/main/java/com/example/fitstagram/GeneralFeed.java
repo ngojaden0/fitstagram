@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -63,9 +64,7 @@ public class GeneralFeed extends AppCompatActivity {
         if (FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else {
-            //currentUser = user.connectToDatabase(FBUser.getUid().toString(), GeneralFeed.this);
-            //String text = currentUser.getUsername();
-            //Toast.makeText(GeneralFeed.this, "Logged in as " + text, Toast.LENGTH_SHORT).show();
+            currentUser = user.connectToDatabase(FBUser.getUid(), GeneralFeed.this);
         }
         PostButton(); //post signIn
         UserProfileButton(); // Justine
