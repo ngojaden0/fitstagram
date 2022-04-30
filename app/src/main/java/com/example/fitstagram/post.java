@@ -4,7 +4,7 @@ public class post {
     private int user_id;
     private long post_id;
     private String description;
-    private boolean featured;
+    private boolean voting;
     private int time;
     private String[] pictures;
 
@@ -12,15 +12,15 @@ public class post {
         this.user_id = 0;
         this.post_id = 0;
         this.description = " ";
-        this.featured = false;
+        this.voting = false;
         this.time = 0;
         this.pictures = null;
     }
-    public post(int user_id, long post_id, String description, boolean featured, int time, String[] pictures){
+    public post(int user_id, long post_id, String description, boolean voting, int time, String[] pictures){
         this.user_id = user_id;
         this.post_id = post_id;
         this.description = description;
-        this.featured = featured;
+        this.voting = voting;
         this.time = time;
         this.pictures = pictures;
     }
@@ -49,12 +49,12 @@ public class post {
         this.description = description;
     }
 
-    public boolean isFeatured() {
-        return featured;
+    public boolean isVoting() {
+        return voting;
     }
 
-    public void setFeatured(boolean featured) {
-        this.featured = featured;
+    public void setVoting(boolean voting) {
+        this.voting = voting;
     }
 
     public int getTime() {

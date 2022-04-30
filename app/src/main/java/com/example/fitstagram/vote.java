@@ -1,37 +1,57 @@
 package com.example.fitstagram;
 
 public class vote extends user{
-    private int vote;
-    private int point_distribution;
-    private boolean correct;
+    private int user_id;
+    private long post_id;
+    private boolean first_choice;
+    private boolean second_choice;
+    private boolean third_choice;
 
-    public vote(int user_id, int vote, int point_distribution, boolean correct) {
-        this.vote = vote;
-        this.point_distribution = point_distribution;
-        this.correct = correct;
+    public vote(int user_id, long post_id) {
+        this.user_id = user_id;
+        this.post_id = post_id;
+        this.first_choice = false;
+        this.second_choice = false;
+        this.third_choice = false;
     }
 
-    public int getVote() {
-        return vote;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setVote(int vote) {
-        this.vote = vote;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getPoint_distribution() {
-        return point_distribution;
+    public long getPost_id() {
+        return post_id;
     }
 
-    public void setPoint_distribution(int point_distribution) {
-        this.point_distribution = point_distribution;
+    public void setPost_id(long post_id) {
+        this.post_id = post_id;
     }
 
-    public boolean isCorrect() {
-        return correct;
+    public boolean isFirst_choice() {
+        return first_choice;
     }
 
-    public void setCorrect(boolean correct) {
-        this.correct = correct;
+    public void setFirst_choice(boolean first_choice) {
+        this.first_choice = first_choice;
+    }
+
+    public boolean isSecond_choice() {
+        return second_choice;
+    }
+
+    public void setSecond_choice(boolean second_choice) {
+        this.second_choice = second_choice;
+    }
+
+    public boolean isThird_choice() {
+        return third_choice;
+    }
+
+    public void setThird_choice(boolean third_choice) {
+        this.third_choice = third_choice;
     }
 }

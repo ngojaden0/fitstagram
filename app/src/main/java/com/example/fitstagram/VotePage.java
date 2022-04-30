@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -21,7 +22,7 @@ public class VotePage extends AppCompatActivity {
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class VotePage extends AppCompatActivity {
         voteButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //db.collection("users").document("789").collection("votes").set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id)));
                 finish();
             }
         });

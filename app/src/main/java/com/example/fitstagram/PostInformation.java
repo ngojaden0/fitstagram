@@ -153,9 +153,9 @@ public class PostInformation extends AppCompatActivity {
                     pictures3 = storageRef.child(Long.toString(post_id)+"/"+file3.getLastPathSegment());
                     DocumentReference general_feed = db.collection("general feed").document(Long.toString(post_id));
                     if(choice)
-                        db.collection("feed").document(Long.toString(post_id)).set(new post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                        db.collection("feed2").document(Long.toString(post_id)).set(new post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
                     else
-                        db.collection("feed").document(Long.toString(post_id)).set(new voting_post(user_id,post_id,description.getText().toString(), false, Integer.parseInt(time.getText().toString()), null));
+                        db.collection("feed2").document(Long.toString(post_id)).set(new voting_post(user_id,post_id,description.getText().toString(), true, Integer.parseInt(time.getText().toString()), null));
                     uploadTask = pictures1.putFile(file1);
                     uploadTask = pictures2.putFile(file2);
                     uploadTask = pictures3.putFile(file3);
