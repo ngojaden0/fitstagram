@@ -7,6 +7,13 @@ public class vote extends user{
     private boolean second_choice;
     private boolean third_choice;
 
+    public vote() {
+        this.user_id = 0;
+        this.post_id = 0L;
+        this.first_choice = false;
+        this.second_choice = false;
+        this.third_choice = false;
+    }
     public vote(int user_id, long post_id) {
         this.user_id = user_id;
         this.post_id = post_id;

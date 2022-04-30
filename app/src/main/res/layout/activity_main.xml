@@ -137,8 +137,8 @@
             android:layout_marginTop="79dp"
             android:layout_marginEnd="13dp"
             android:layout_marginRight="13dp"
-            android:textStyle="bold"
-            android:text="about post" />
+            android:text="about post"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text2"
@@ -150,8 +150,8 @@
             android:layout_marginTop="221dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            android:text="about post" />
+            android:text="about post"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text3"
@@ -163,8 +163,8 @@
             android:layout_marginEnd="9dp"
             android:layout_marginRight="9dp"
             android:layout_marginBottom="146dp"
-            android:textStyle="bold"
-            android:text="about post" />
+            android:text="about post"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

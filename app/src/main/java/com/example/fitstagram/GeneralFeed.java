@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -43,25 +42,25 @@ import java.util.ArrayList;
 //this is login
 public class GeneralFeed extends AppCompatActivity {
 
-    private RecyclerView mFirestoreList;
-    private FirestoreRecyclerAdapter adapter;
+    //private RecyclerView mFirestoreList;
+    //private FirestoreRecyclerAdapter adapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
-    FirebaseUser FBUser;
-    FirebaseAuth mAuth;
+    //FirebaseUser FBUser;
+    //FirebaseAuth mAuth;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
-    user currentUser;
+    //user currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        FBUser = mAuth.getCurrentUser();
-        currentUser = new user();
-
+        //mAuth = FirebaseAuth.getInstance();
+        //FBUser = mAuth.getCurrentUser();
+        //currentUser = new user();
+/*
         if (FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else if(!user.isDatabaseConnected())
@@ -70,6 +69,7 @@ public class GeneralFeed extends AppCompatActivity {
             currentUser = user.databaseGetUser();
             Toast.makeText(GeneralFeed.this, "Logged in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
         }
+ */
         removeVotePosts();
         PostButton(); //post signIn
         UserProfileButton(); // Justine
@@ -84,7 +84,9 @@ public class GeneralFeed extends AppCompatActivity {
         postToFeed(ExampleImage2, ExampleText2, 1);
         postToFeed(ExampleImage3, ExampleText3, 2);
 
+
         //mFirestoreList = findViewById(R.id.firestore_list);
+        /*
         Query query = FirebaseFirestore.getInstance().collection("feed");
         FirestoreRecyclerOptions<postModel> option = new FirestoreRecyclerOptions.Builder<postModel>()
                 .setQuery(query,postModel.class).build();
@@ -104,11 +106,13 @@ public class GeneralFeed extends AppCompatActivity {
 
             }
         };
+
+         */
         //mFirestoreList.setHasFixedSize(true);
         //mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
         //mFirestoreList.setAdapter(adapter);
     }
-
+/*
     private class postViewHolder extends RecyclerView.ViewHolder{
 
         private TextView descriptionID;
@@ -124,19 +128,21 @@ public class GeneralFeed extends AppCompatActivity {
         }
     }
 
+ */
+/*
     @Override
     protected void onStart() {
         super.onStart();
         removeVotePosts();
         adapter.startListening();
     }
-
+ */
     private void UserProfileButton() {
         Button profileButton = (Button) findViewById(R.id.user_button);
-        removeVotePosts();
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                removeVotePosts();
                 startActivity(new Intent(GeneralFeed.this, profile.class));
             }
         });
@@ -144,32 +150,32 @@ public class GeneralFeed extends AppCompatActivity {
 
     private void RankingButton() {
         Button rankingButton = (Button) findViewById(R.id.ranking_button);
-        removeVotePosts();
         rankingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                removeVotePosts();
                 startActivity(new Intent(GeneralFeed.this, ranking.class));
             }
         });
     }
 
     private void PostButton() {
-        removeVotePosts();
         Button postButton = (Button) findViewById(R.id.post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // start next activity
+                removeVotePosts();
                 startActivity(new Intent(GeneralFeed.this, userpost_or_voterpost.class));
             }
         });
     }
     private void VoteButton(String user_id, String post_id, ArrayList<String> list, String description) {
         Button voteButton = (Button) findViewById(R.id.vote_button);
-        removeVotePosts();
         voteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                removeVotePosts();
                 Intent i = new Intent(GeneralFeed.this, VotePage.class);
                 i.putExtra("user",user_id);
                 i.putExtra("post",post_id);
@@ -182,79 +188,79 @@ public class GeneralFeed extends AppCompatActivity {
         });
     }
     private void postToFeed(ImageView post, TextView text, int index){
-    db.collection("feed").orderBy("post_id", Query.Direction.DESCENDING)
+        removeVotePosts();
+        db.collection("feed").orderBy("post_id", Query.Direction.DESCENDING)
         .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            document.get("post_id");
-                        }
-                        String i,j,k;
-                        ArrayList<String> list = new ArrayList<String>();
-                /*
-                one instance from query, do everything in the for each loop for accessing all
-                .get(0) = most recent post in the query
-                */
-                        DocumentSnapshot single = task.getResult().getDocuments().get(index);
-                        Log.d("feed","hey: "+single.get("user_id"));
-                        Object user_id = single.get("user_id");
-                        Object post_id = single.get("post_id");
-                        Object description = single.get("description");
-                        i = user_id.toString();
-                        j = post_id.toString();
-                        k = description.toString();
-                        text.setText(i+"\n"+k); //display example post id and description
-                        StorageReference listRef = storage.getReference().child(j);
-                        listRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                            @Override
-                            public void onSuccess(ListResult listResult) {
-                                for (StorageReference item : listResult.getItems()) {
-                                    // All the items under listRef.
-                                    Log.d("string", item.toString());
-                                    String sub = item.toString().substring(56);
-                                    // sub = image:## -> ##
-                                    list.add(sub);
-                                }
-                                    storageRef.child(j+"/"+"image:"+ list.get(0)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @RequiresApi(api = Build.VERSION_CODES.P)
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            Glide.with(getApplicationContext()).load(uri).override(350,350).into(post);
-                                            Log.d("string",list.toString());
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception exception) {
-                                            // Handle any errors
-                                        }
-                                    });
-
-                            }
-                        });
-                        VoteButton(i,j,list,k);
-                        Log.d("vote",i+j+list.toString());
+        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        document.get("post_id");
                     }
-                }});
+                    String i,j,k;
+                    ArrayList<String> list = new ArrayList<String>();
+                    DocumentSnapshot single = task.getResult().getDocuments().get(index);
+                    Log.d("feed","hey: "+single.get("user_id"));
+                    Object user_id = single.get("user_id");
+                    Object post_id = single.get("post_id");
+                    Object description = single.get("description");
+                    i = user_id.toString();
+                    j = post_id.toString();
+                    k = description.toString();
+                    text.setText(i+"\n"+k); //display example post id and description
+
+
+                    StorageReference listRef = storage.getReference().child(j);
+                    listRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                        @Override
+                        public void onSuccess(ListResult listResult) {
+                            for (StorageReference item : listResult.getItems()) {
+                                // All the items under listRef.
+                                Log.d("string", item.toString());
+                                String sub = item.toString().substring(56);
+                                // sub = image:## -> ##
+                                list.add(sub);
+                            }
+                                storageRef.child(j+"/"+"image:"+ list.get(0)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @RequiresApi(api = Build.VERSION_CODES.P)
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Glide.with(getApplicationContext()).load(uri).override(350,350).into(post);
+                                        Log.d("string",list.toString());
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle any errors
+                                    }
+                                });
+
+                        }
+                    });
+                    VoteButton(i,j,list,k);
+                    Log.d("vote",i+j+list.toString());
+                }
+            }});
     }
+
     private void removeVotePosts(){
         CollectionReference itemsRef = db.collection("feed2");
         Query query = itemsRef.whereEqualTo("voting",true);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    long current_time;
-                    if (task.isSuccessful()) {
-                        for(DocumentSnapshot document : task.getResult()) {
-                            if(System.currentTimeMillis() > Long.parseLong(document.get("final_time").toString())) {
-                                itemsRef.document(document.getId()).delete();
-                            }
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                long current_time;
+                if (task.isSuccessful()) {
+                    for(DocumentSnapshot document : task.getResult()) {
+                        if(System.currentTimeMillis() > Long.parseLong(document.get("final_time").toString())) {
+                            itemsRef.document(document.getId()).delete();
                         }
                     }
                 }
-            });
+            }
+        });
     }
 }

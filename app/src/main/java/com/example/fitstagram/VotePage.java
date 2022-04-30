@@ -46,7 +46,7 @@ public class VotePage extends AppCompatActivity {
         voteButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //db.collection("users").document("789").collection("votes").set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id)));
+                db.collection("users").document("789").collection("votes").document("hi").set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id)));
                 finish();
             }
         });
