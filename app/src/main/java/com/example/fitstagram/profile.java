@@ -3,8 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,18 +29,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 
 public class profile extends AppCompatActivity {
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -52,7 +45,6 @@ public class profile extends AppCompatActivity {
     TextView aboutMe, username;
     ImageView img, badges_bronze, badges_silver,badges_gold;
     String name, email,uid, bio;
-    Uri photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +160,6 @@ public class profile extends AppCompatActivity {
             // Name, email address, and profile photo Url
             name = user.getDisplayName();
             email = user.getEmail();
-            photoUrl = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
