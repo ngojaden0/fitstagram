@@ -115,7 +115,6 @@ public class profile extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 if(document.getString("uid").equals(uid)){
-                                    Toast.makeText(profile.this, "post_id: " + document.getId(),Toast.LENGTH_SHORT).show();
                                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(document.getId());
                                     progressBar.setVisibility(View.VISIBLE);
                                     storageReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
@@ -177,7 +176,6 @@ public class profile extends AppCompatActivity {
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
-            Toast.makeText(this, "UID: " + user.getUid(), Toast.LENGTH_SHORT).show();
             uid = user.getUid();
         }
         // [END get_user_profile]
