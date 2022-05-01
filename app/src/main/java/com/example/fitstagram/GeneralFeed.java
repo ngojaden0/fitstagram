@@ -6,26 +6,32 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
@@ -36,12 +42,12 @@ import java.util.ArrayList;
 //this is login
 public class GeneralFeed extends AppCompatActivity {
 
-    //private RecyclerView mFirestoreList;
-    //private FirestoreRecyclerAdapter adapter;
+    private RecyclerView mFirestoreList;
+    private FirestoreRecyclerAdapter adapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //instantiate firestore
-    //FirebaseUser FBUser;
-    //FirebaseAuth mAuth;
+    FirebaseUser FBUser;
+    FirebaseAuth mAuth;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
@@ -51,10 +57,10 @@ public class GeneralFeed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mAuth = FirebaseAuth.getInstance();
-        //FBUser = mAuth.getCurrentUser();
-        //currentUser = new user();
-/*
+        mAuth = FirebaseAuth.getInstance();
+        FBUser = mAuth.getCurrentUser();
+        user currentUser = new user();
+
         if (FBUser == null)
             startActivity(new Intent(GeneralFeed.this, loginMain.class));
         else if(!user.isDatabaseConnected())
@@ -63,7 +69,7 @@ public class GeneralFeed extends AppCompatActivity {
             currentUser = user.databaseGetUser();
             Toast.makeText(GeneralFeed.this, "Logged in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
         }
- */
+
         removeVotePosts();
         PostButton(); //post signIn
         UserProfileButton(); // Justine
@@ -74,13 +80,13 @@ public class GeneralFeed extends AppCompatActivity {
         ImageView ExampleImage1 = (ImageView) findViewById(R.id.post1);
         ImageView ExampleImage2 = (ImageView) findViewById(R.id.post2);
         ImageView ExampleImage3 = (ImageView) findViewById(R.id.post3);
-        //postToFeed(ExampleImage1, ExampleText1, 0);
-        //postToFeed(ExampleImage2, ExampleText2, 1);
-        //postToFeed(ExampleImage3, ExampleText3, 2);
+        postToFeed(ExampleImage1, ExampleText1, 0);
+        postToFeed(ExampleImage2, ExampleText2, 1);
+        postToFeed(ExampleImage3, ExampleText3, 2);
 
 
         //mFirestoreList = findViewById(R.id.firestore_list);
-        /*
+
         Query query = FirebaseFirestore.getInstance().collection("feed");
         FirestoreRecyclerOptions<postModel> option = new FirestoreRecyclerOptions.Builder<postModel>()
                 .setQuery(query,postModel.class).build();
@@ -101,12 +107,12 @@ public class GeneralFeed extends AppCompatActivity {
             }
         };
 
-         */
+
         //mFirestoreList.setHasFixedSize(true);
         //mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
         //mFirestoreList.setAdapter(adapter);
     }
-/*
+
     private class postViewHolder extends RecyclerView.ViewHolder{
 
         private TextView descriptionID;
@@ -122,15 +128,13 @@ public class GeneralFeed extends AppCompatActivity {
         }
     }
 
- */
-/*
     @Override
     protected void onStart() {
         super.onStart();
         removeVotePosts();
         adapter.startListening();
     }
- */
+
     private void UserProfileButton() {
         Button profileButton = (Button) findViewById(R.id.user_button);
         profileButton.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +253,7 @@ public class GeneralFeed extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for(DocumentSnapshot document : task.getResult()) {
                         if(System.currentTimeMillis() > Long.parseLong(document.get("final_time").toString())) {
-                            distributePoints(document.getId());
+                            //distributePoints(document.getId());
                             itemsRef.document(document.getId()).delete();
                         }
                     }
@@ -257,7 +261,7 @@ public class GeneralFeed extends AppCompatActivity {
             }
         });
     }
-
+/*
     private void distributePoints(String post_id)
     {
         CollectionReference usersRef = db.collection("users");
@@ -278,4 +282,6 @@ public class GeneralFeed extends AppCompatActivity {
                 }
             });
     }
+
+ */
 }
