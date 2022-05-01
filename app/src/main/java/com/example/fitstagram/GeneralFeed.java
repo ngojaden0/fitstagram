@@ -6,9 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,19 +14,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -80,9 +74,9 @@ public class GeneralFeed extends AppCompatActivity {
         ImageView ExampleImage1 = (ImageView) findViewById(R.id.post1);
         ImageView ExampleImage2 = (ImageView) findViewById(R.id.post2);
         ImageView ExampleImage3 = (ImageView) findViewById(R.id.post3);
-        postToFeed(ExampleImage1, ExampleText1, 0);
-        postToFeed(ExampleImage2, ExampleText2, 1);
-        postToFeed(ExampleImage3, ExampleText3, 2);
+        //postToFeed(ExampleImage1, ExampleText1, 0);
+        //postToFeed(ExampleImage2, ExampleText2, 1);
+        //postToFeed(ExampleImage3, ExampleText3, 2);
 
 
         //mFirestoreList = findViewById(R.id.firestore_list);
@@ -196,9 +190,7 @@ public class GeneralFeed extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        document.get("post_id");
-                    }
+
                     String i,j,k;
                     ArrayList<String> list = new ArrayList<String>();
                     DocumentSnapshot single = task.getResult().getDocuments().get(index);
@@ -246,21 +238,44 @@ public class GeneralFeed extends AppCompatActivity {
     }
 
     private void removeVotePosts(){
-        CollectionReference itemsRef = db.collection("feed2");
+        CollectionReference itemsRef = db.collection("feed");
+        CollectionReference usersRef = db.collection("users");
         Query query = itemsRef.whereEqualTo("voting",true);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                long current_time;
+                String id;
                 if (task.isSuccessful()) {
                     for(DocumentSnapshot document : task.getResult()) {
                         if(System.currentTimeMillis() > Long.parseLong(document.get("final_time").toString())) {
+                            distributePoints(document.getId());
                             itemsRef.document(document.getId()).delete();
                         }
                     }
                 }
             }
         });
+    }
+
+    private void distributePoints(String post_id)
+    {
+        CollectionReference usersRef = db.collection("users");
+        usersRef.get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            DocumentSnapshot single_user = usersRef.document(document.getId()).collection("votes").document(post_id).get().getResult();
+                            DocumentSnapshot single_post = db.collection("feed").document(post_id).get().getResult();
+                            if(single_user.getString("choice") == single_post.getString("most_voted"))
+                            {
+                                usersRef.document(document.getId()).update("total_points",FieldValue.increment(1));
+                            }
+                        }
+                    }
+                }
+            });
     }
 }

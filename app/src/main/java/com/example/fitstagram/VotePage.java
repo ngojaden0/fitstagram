@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -46,7 +48,9 @@ public class VotePage extends AppCompatActivity {
         voteButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("users").document("789").collection("votes").document("hi").set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id)));
+                db.collection("users").document(user_id).collection("votes").document(post_id).set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id), 1));
+                DocumentReference total = db.collection("feed").document(post_id);
+                total.update("choice_1", FieldValue.increment(1));
                 finish();
             }
         });
@@ -57,6 +61,9 @@ public class VotePage extends AppCompatActivity {
         voteButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.collection("users").document(user_id).collection("votes").document(post_id).set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id), 2));
+                DocumentReference total = db.collection("feed").document(post_id);
+                total.update("choice_2", FieldValue.increment(1));
                 finish();
             }
         });
@@ -67,6 +74,9 @@ public class VotePage extends AppCompatActivity {
         voteButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.collection("users").document(user_id).collection("votes").document(post_id).set(new vote(Integer.parseInt(user_id),Long.parseLong(post_id), 3));
+                DocumentReference total = db.collection("feed").document(post_id);
+                total.update("choice_3", FieldValue.increment(1));
                 finish();
             }
         });
