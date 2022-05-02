@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,13 +29,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class profile extends AppCompatActivity {
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -59,7 +58,7 @@ public class profile extends AppCompatActivity {
         badges_gold = (ImageView) findViewById(R.id.Gold);
 
         img = findViewById(R.id.pfp);
-        if(name == null)
+        if (name == null)
             username.setText(email);
         else
             username.setText(name);
@@ -73,14 +72,12 @@ public class profile extends AppCompatActivity {
                 if (document.exists()) {
                     bio = document.getString("bio");
                     aboutMe.setText(document.getString("bio"));
-                    if(document.getLong("total_points") >= 100 && document.getLong("total_points") < 500){
+                    if (document.getLong("total_points") >= 100 && document.getLong("total_points") < 500) {
                         badges_bronze.setVisibility(View.VISIBLE);
-                    }
-                    else if(document.getLong("total_points") >= 500 && document.getLong("total_points") < 1000){
+                    } else if (document.getLong("total_points") >= 500 && document.getLong("total_points") < 1000) {
                         badges_bronze.setVisibility(View.VISIBLE);
                         badges_silver.setVisibility(View.VISIBLE);
-                    }
-                    else if(document.getLong("total_points") >= 1000){
+                    } else if (document.getLong("total_points") >= 1000) {
                         badges_bronze.setVisibility(View.VISIBLE);
                         badges_silver.setVisibility(View.VISIBLE);
                         badges_gold.setVisibility(View.VISIBLE);
@@ -89,36 +86,54 @@ public class profile extends AppCompatActivity {
             }
         });
 
+        getPost();
+        onBtnReturn();
+    }
+
+    public void getPost(){
+        //Setting Users Posts In User Profile
         ProgressBar progressBar = findViewById(R.id.progressBar);
         final ArrayList<String> imageList = new ArrayList<>();
         final RecyclerView recyclerView = findViewById(R.id.recyclerViewProfile);
-        final ImageAdapter adapter = new ImageAdapter(imageList,this);
+        final ImageAdapter adapter = new ImageAdapter(imageList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("1650916494032");
-        progressBar.setVisibility(View.VISIBLE);
-        storageReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-            @Override
-            public void onSuccess(ListResult listResult) {
-                for (StorageReference fileRef : listResult.getItems()) {
-                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            imageList.add(uri.toString());
-                            Log.d("item", uri.toString());
+        CollectionReference collectionReference = rootRef.collection("feed");
+        collectionReference
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getString("uid").equals(uid)){
+                                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(document.getId());
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    storageReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                                        @Override
+                                        public void onSuccess(ListResult listResult) {
+                                            for (StorageReference fileRef : listResult.getItems()) {
+                                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        imageList.add(uri.toString());
+                                                        Log.d("item", uri.toString());
+                                                    }
+                                                }).addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        recyclerView.setAdapter(adapter);
+                                                        progressBar.setVisibility(View.GONE);
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+                            }
                         }
-                    }).addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            recyclerView.setAdapter(adapter);
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    });
-                }
-            }
-        });
-
-        onBtnReturn();
+                    }
+                });
     }
 
     public void onBtnReturn() {
@@ -139,7 +154,7 @@ public class profile extends AppCompatActivity {
 
     public void getUserProfile() {
         // [START get_user_profile]
-        Toast.makeText(this, "" + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Username: " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
 
         if (user != null) {
             // Name, email address, and profile photo Url
