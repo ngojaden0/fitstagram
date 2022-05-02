@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#60BBF4F4">
 
     <Button
         android:id="@+id/leaveInfoBtn"
@@ -25,7 +26,7 @@
         android:layout_marginTop="150dp"
         android:text="How is Ranking Determined?"
         android:textColor="#2196F3"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
         android:id="@+id/infoDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:lineSpacingExtra="8sp"
         android:text="The Ranking list shows which users have the most votes based on their voting posts. The votes of each post are counted and accumulated to the user's total. If the user reaches the 100-point threshold, a Bronze Badge is awarded. If the user reaches the 500-point threshold, a Silver Badge is awarded. If the user reaches the 1000-point threshold, a Gold Badge is awarded. Please note that these notes are awarded based on voting posts only, which can be voted on in the featured section."
@@ -51,7 +52,9 @@
         android:layout_height="221dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoDescription"
+        app:layout_constraintVertical_bias="0.241"
         app:srcCompat="@drawable/olympic_medals_ga2a0683d0_1920" />
 </androidx.constraintlayout.widget.ConstraintLayout>

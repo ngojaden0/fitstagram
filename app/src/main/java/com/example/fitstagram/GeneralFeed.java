@@ -282,6 +282,5 @@ public class GeneralFeed extends AppCompatActivity {
                 }
             });
     }
-
  */
 }
